@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
+/*   Updated: 2019/01/13 16:23:57 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 
 # include <sys/stat.h>	// struct stat
 # include <limits.h>	// PATH_MAX, NAME_MAX
-# include <string.h>	// size_t for libft functions
+# include <string.h>	// size_t for libft functions (TODO: needed?)
 
 # define OPT			g_options
 
@@ -30,7 +42,7 @@
 
 /* list */
 
-struct				s_list
+struct					s_list
 {
 	char			*name;
 	char			*link;
@@ -46,22 +58,25 @@ struct				s_list
 	struct s_list	*next;
 };
 
-struct				s_metrics
+struct					s_metrics
 {
-	unsigned	inode_len;
-	unsigned	nlink_len;
-	unsigned	uname_len;
-	unsigned	gname_len;
-	unsigned	size_len;
-	unsigned	name_len;
-	unsigned	total_items;
-	blkcnt_t	total_blocks;
+	unsigned		inode_len;
+	unsigned		nlink_len;
+	unsigned		uname_len;
+	unsigned		gname_len;
+	unsigned		size_len;
+	unsigned		name_len;
+	unsigned		total_items;
+	blkcnt_t		total_blocks;
 };
 
-extern char			g_path[PATH_MAX + NAME_MAX];
-extern time_t		g_now;
-extern unsigned		g_options;
-extern time_t const	*(*g_time_func)(struct s_list *);
+extern char				g_path[PATH_MAX + NAME_MAX];
+extern time_t			g_now;
+extern unsigned			g_options;
+extern time_t const		*(*g_time_func)(struct s_list *);
+
+typedef struct s_list	*(*t_after_func)(struct s_list const *,
+														struct s_list const *);
 
 void				init(struct s_list *head);
 //void			insert_after(struct s_list *item, struct s_list *new);
@@ -78,40 +93,40 @@ int					compare_size(struct s_list *elem1, struct s_list *elem2);
 
 /* ------------------ libft functions ------------------ */
 
-void				*ft_memcpy(void *dst, const void *src, size_t n);
-size_t				ft_strlen(const char *s);
-int					ft_strcmp(const char *s1, const char *s2);
-unsigned			ft_utoa(char **addr, unsigned long long n);
+void					*ft_memcpy(void *dst, const void *src, size_t n);
+size_t					ft_strlen(const char *s);
+int						ft_strcmp(const char *s1, const char *s2);
+unsigned				ft_utoa(char **addr, unsigned long long n);
 
 /*
 **	get_time.c
 */
 
-time_t const	*get_mtime(struct s_list *elem);
-time_t const	*get_atime(struct s_list *elem);
-time_t const	*get_ctime(struct s_list *elem);
-time_t const	*get_birthtime(struct s_list *elem);
+time_t const			*get_mtime(struct s_list *elem);
+time_t const			*get_atime(struct s_list *elem);
+time_t const			*get_ctime(struct s_list *elem);
+time_t const			*get_birthtime(struct s_list *elem);
 
 /* options */
 
-char const	**parse_options(char const **av);
+char const				**parse_options(char const **av);
 
 // stat
 
 
 // sort
 
-struct s_list	*after_mtime(struct s_list const *head,
+struct s_list			*after_mtime(struct s_list const *head,
 													struct s_list const *elem);
-struct s_list	*after_ctime(struct s_list const *head,
+struct s_list			*after_ctime(struct s_list const *head,
 													struct s_list const *elem);
-struct s_list	*after_atime(struct s_list const *head,
+struct s_list			*after_atime(struct s_list const *head,
 													struct s_list const *elem);
-struct s_list	*after_birthtime(struct s_list const *head,
+struct s_list			*after_birthtime(struct s_list const *head,
 													struct s_list const *elem);
-struct s_list	*after_size(struct s_list const *head,
+struct s_list			*after_size(struct s_list const *head,
 													struct s_list const *elem);
-void	sort_list(struct s_list *head);
+void					sort_list(struct s_list *head);
 
 // print_list
 

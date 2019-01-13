@@ -200,65 +200,9 @@ void	stat_list(struct s_list *head, int path_len)
 }
 
 /* --------------- functions for sorting ------------------ */
+//typedef struct s_list	*(*t_after_func)(struct s_list const *, struct s_list const *);
 /*
-struct s_list	*after_mtime(struct s_list const *head, struct s_list const *elem)
-{
-	time_t const	elem_mtime = elem->stat.st_mtime;
-	struct s_list	*after;
-
-	after = elem->prev;
-	while (after != head && after->stat.st_mtime < elem_mtime)
-		after = after->prev;
-	return (after);
-}
-
-struct s_list	*after_ctime(struct s_list const *head, struct s_list const *elem)
-{
-	time_t const	elem_ctime = elem->stat.st_ctime;
-	struct s_list	*after;
-
-	after = elem->prev;
-	while (after != head && after->stat.st_ctime < elem_ctime)
-		after = after->prev;
-	return (after);
-}
-
-struct s_list	*after_atime(struct s_list const *head, struct s_list const *elem)
-{
-	time_t const	elem_atime = elem->stat.st_atime;
-	struct s_list	*after;
-
-	after = elem->prev;
-	while (after != head && after->stat.st_atime < elem_atime)
-		after = after->prev;
-	return (after);
-}
-
-struct s_list	*after_birthtime(struct s_list const *head, struct s_list const *elem)
-{
-	time_t const	elem_birthtime = elem->stat.st_birthtime;
-	struct s_list	*after;
-
-	after = elem->prev;
-	while (after != head && after->stat.st_birthtime < elem_birthtime)
-		after = after->prev;
-	return (after);
-}
-
-struct s_list	*after_size(struct s_list const *head, struct s_list const *elem)
-{
-	off_t const		elem_size = elem->stat.st_size;
-	struct s_list	*after;
-
-	after = elem->prev;
-	while (after != head && after->stat.st_size < elem_size)
-		after = after->prev;
-	return (after);
-}
-*/
-typedef struct s_list	*(*t_after_func)(struct s_list const *, struct s_list const *);
-
-t_after_func	select_after_func(void)
+static t_after_func	select_after_func(void)
 {
 	if (OPT & O_SORT_SIZE)
 		return (after_size);	// what is size for special files?
@@ -276,8 +220,8 @@ t_after_func	select_after_func(void)
 	return (NULL);	// this shouldn't happen
 }
 
-// insertion sort
-void	sort_list(struct s_list *head)
+
+void			sort_list(struct s_list *head)
 {
 	struct s_list		*elem;
 	struct s_list		*next;
@@ -304,6 +248,7 @@ void	sort_list(struct s_list *head)
 		elem = next;
 	}
 }
+*/
 
 /* ----------------- metrics --------------- */
 

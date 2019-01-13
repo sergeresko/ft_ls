@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 16:16:22 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 16:26:23 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = \
 	list_dir.c \
 	parse_options.c \
 	after_func.c \
+	sort_list.c \
 	main.c
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
