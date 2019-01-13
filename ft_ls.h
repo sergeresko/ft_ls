@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 17:51:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 18:02:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,11 +181,11 @@ void		list_directory(int path_len);
 
 /* --------- */
 
-int		build_list_from_args(struct s_list *head, char const **av);
+int		build_list_arg(struct s_list *head, char const **av);
 void	stat_list_arg(struct s_list *head);
 
 
-void	list_args(char const **av);
+void	list_arg(char const **av);
 
 // WHERE?
 

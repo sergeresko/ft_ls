@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 17:52:16 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 18:04:04 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,9 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 SRC = \
 	ft.c \
+	extra.c \
 	old.c \
 	get_time.c \
-	list_args.c \
-	list_dir.c \
 	parse_options.c \
 	after_func.c \
 	sort_list.c \
@@ -29,7 +28,8 @@ SRC = \
 	print_elem.c \
 	print_list_short.c \
 	print_list_long.c \
-	extra.c \
+	list_arg.c \
+	list_dir.c \
 	main.c
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

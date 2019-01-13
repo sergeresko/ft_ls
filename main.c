@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 15:16:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 18:04:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char const *argv[])
 	(void)time(&g_now);
 	argv = parse_options(argv);
 	(void)set_time_func();
-	list_args(argv);
+	list_arg(argv);
 	//
 	system("leaks -q ft_ls");	//
 	//

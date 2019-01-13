@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_args.c                                        :+:      :+:    :+:   */
+/*   list_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 16:35:28 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 18:02:55 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	split_list(struct s_list *head, struct s_list *head_dir)
 	}
 }
 
-static void	recursion_args(struct s_list *head, int fmt)
+static void	recursion_arg(struct s_list *head, int fmt)
 {
 	struct s_list	*elem;
 	struct s_list	*next;
@@ -80,7 +80,7 @@ static void	recursion_args(struct s_list *head, int fmt)
 	}
 }
 
-static void	recursion_args_reverse(struct s_list *head, int fmt)
+static void	recursion_arg_reverse(struct s_list *head, int fmt)
 {
 	struct s_list	*elem;
 	struct s_list	*prev;
@@ -104,14 +104,14 @@ static void	recursion_args_reverse(struct s_list *head, int fmt)
 	}
 }
 
-void		list_args(char const **av)
+void		list_arg(char const **av)
 {
 	struct s_list	head;
 	struct s_list	head_dir;
 	int				fmt;
 
 	init(&head);
-	fmt = (build_list_from_args(&head, av) > 1);
+	fmt = (build_list_arg(&head, av) > 1);
 	stat_list_arg(&head);
 	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
 		sort_list(&head);
@@ -122,13 +122,13 @@ void		list_args(char const **av)
 		(OPT & O_LONG_FORMAT) ?
 			print_list_long_reverse(&head, 0) :
 			print_list_short_reverse(&head); 	// if (OPT & O_COLUMNS) TODO
-		recursion_args_reverse(&head_dir, fmt);
+		recursion_arg_reverse(&head_dir, fmt);
 	}
 	else
 	{
 		(OPT & O_LONG_FORMAT) ?
 			print_list_long(&head, 0) :
 			print_list_short(&head);		// if (OPT & O_COLUMNS) TODO
-		recursion_args(&head_dir, fmt);
+		recursion_arg(&head_dir, fmt);
 	}
 }

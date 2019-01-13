@@ -217,7 +217,7 @@ char	file_type(mode_t fmt)	// fmt = (st_mode & S_IFMT)
 }
 /* --------------------------------------------- */
 
-int		build_list_from_args(struct s_list *head, char const **av)
+int		build_list_arg(struct s_list *head, char const **av)
 {
 	int		ac;
 
