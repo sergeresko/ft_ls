@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 18:04:04 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 18:41:36 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,12 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = \
 	ft.c \
 	extra.c \
-	old.c \
 	get_time.c \
 	parse_options.c \
 	after_func.c \
+	build_list.c \
+	fill_info.c \
+	stat_list.c \
 	sort_list.c \
 	metrics_1.c \
 	metrics_2.c \

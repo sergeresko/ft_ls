@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:04:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 18:45:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <sys/xattr.h>	// listxattr
 */
 
-#include <stdlib.h>		// leaks
+//#include <stdlib.h>		// leaks
 #include <time.h>
 #include "ft_ls.h"
 
@@ -68,7 +68,7 @@ int	main(int argc, char const *argv[])
 	(void)set_time_func();
 	list_arg(argv);
 	//
-	system("leaks -q ft_ls");	//
+//	system("leaks -q ft_ls");	//
 	//
 	return (0);
 }

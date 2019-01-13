@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:02:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 18:37:57 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ struct					s_metrics
 };
 
 /*
-**	declaration of global variables
+**	Declaration of global variables:
 */
 
 extern char				g_path[PATH_MAX + NAME_MAX];
@@ -78,7 +78,9 @@ extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 
 
-/* ------------------ libft functions ------------------ */
+/*
+**	libft functions from ft.c:
+*/
 
 void					*ft_memcpy(void *dst, const void *src, size_t n);
 size_t					ft_strlen(const char *s);
@@ -86,7 +88,15 @@ int						ft_strcmp(const char *s1, const char *s2);
 unsigned				ft_utoa(char **addr, unsigned long long n);
 
 /*
-**	get_time.c
+**	Miscellaneous extra functions from extra.c:
+*/
+
+int						is_dummy(char const *name);
+void					file_error(char const *name);
+char					file_type(mode_t fmt);
+
+/*
+**	Functions from get_time.c:
 */
 
 time_t const			*get_mtime(struct s_list *elem);
@@ -98,10 +108,18 @@ time_t const			*get_birthtime(struct s_list *elem);
 
 char const				**parse_options(char const **av);
 
-// stat
+/*
+**	Functions for statistics from fill_info.c and stat_list.c:
+*/
+void					fill_user(struct s_list *elem);
+void					fill_group(struct s_list *elem);
+int						fill_link(struct s_list *elem);
+char					xattr_acl(void);
+void					stat_list(struct s_list *head, int path_len);
+void					stat_list_arg(struct s_list *head);
 
 /*
-**	Functions for sorting from after_func.c and sort_list.c
+**	Functions for sorting from after_func.c and sort_list.c:
 */
 
 struct s_list			*after_mtime(struct s_list const *head,
@@ -119,7 +137,7 @@ typedef struct s_list	*(*t_after_func)(struct s_list const *head,
 void					sort_list(struct s_list *head);
 
 /*
-**	Functions for metrics from metrics_{1,2}.c compute_metrics.c
+**	Functions for metrics from metrics_{1,2}.c compute_metrics.c:
 */
 
 unsigned				max_inode_len(struct s_list const *head);
@@ -133,12 +151,8 @@ blkcnt_t				total_blocks(struct s_list const *head);
 void					compute_metrics(struct s_metrics *metrics,
 													struct s_list const *head);
 
-//
-
-char	file_type(mode_t fmt);
-
 /*
-**	Functions from print_field.c
+**	Functions from print_field.c:
 */
 
 char					*print_mode(char *dst, struct s_list const *elem);
@@ -150,7 +164,7 @@ char					*print_s(char *dst, char const *str, unsigned str_len,
 char					*print_u(char *dst, unsigned width, unsigned n);
 
 /*
-**	Functions from print_elem.c
+**	Functions from print_elem.c:
 */
 
 void					print_elem_info_short(char *s, struct s_list *elem,
@@ -161,7 +175,7 @@ void					print_elem_name(struct s_list *elem);
 unsigned				info_len(struct s_metrics const *metrics);
 
 /*
-**	Functions from print_list_{long,short}
+**	Functions from print_list_{long,short}:
 */
 
 void					print_list_short(struct s_list *head);
@@ -172,23 +186,18 @@ void					print_list_long_reverse(struct s_list *head,
 
 //
 
-int		build_list(struct s_list *head);
-void	stat_list(struct s_list *head, int path_len);
+/*
+**	Functions form build_list.c:
+*/
 
-/* list_directory */
+int						build_list(struct s_list *head);
+int						build_list_arg(struct s_list *head, char const **av);
 
-void		list_directory(int path_len);
+/*
+**	Functions from list_{arg,dir}.c:
+*/
 
-/* --------- */
-
-int		build_list_arg(struct s_list *head, char const **av);
-void	stat_list_arg(struct s_list *head);
-
-
-void	list_arg(char const **av);
-
-// WHERE?
-
-int		is_dummy(char const *name);
+void					list_directory(int path_len);
+void					list_arg(char const **av);
 
 #endif

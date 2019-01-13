@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   build_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/13 18:39:04 by syeresko          #+#    #+#             */
+/*   Updated: 2019/01/13 18:42:05 by syeresko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <dirent.h>		// opendir, readdir, closedir
-#include <sys/stat.h>	// stat, lstat
-#include <unistd.h>		// readlink
-#include <stdio.h>		// perror
-#include <errno.h>		// errno
+//#include <sys/stat.h>	// stat, lstat
+//#include <unistd.h>		// readlink
+//#include <stdio.h>		// perror
+//#include <errno.h>		// errno
 #include <stdlib.h>		// malloc, free, exit
-#include <time.h>
-#include <pwd.h>		// getpwuid
-#include <grp.h>		// getgrgid
-#include <sys/xattr.h>	// listxattr
+//#include <time.h>
+//#include <pwd.h>		// getpwuid
+//#include <grp.h>		// getgrgid
+//#include <sys/xattr.h>	// listxattr
 
 #include "ft_ls.h"
 
 /* ------------------------------------------- */
-
+/*
 void	file_error(char const *name)
 {
 	char const	*s = strerror(errno);
@@ -24,9 +36,12 @@ void	file_error(char const *name)
 	(void)write(2, "\n", 1);
 	errno = 0;
 }
+*/
 
-// With a terminating '\0', but do I need it?
-void	add_to_list(struct s_list *head, char const *name, unsigned name_len)
+/*
+**	name is added with a terminating '\0'
+*/
+static void	add_to_list(struct s_list *head, char const *name, unsigned name_len)
 {
 	struct s_list	*new;
 	struct s_list	*after;
@@ -45,7 +60,7 @@ void	add_to_list(struct s_list *head, char const *name, unsigned name_len)
 	after->next = new;
 }
 
-int		build_list(struct s_list *head)
+int			build_list(struct s_list *head)
 {
 	DIR *const		dirp = opendir(g_path);
 	struct dirent	*entry;
@@ -68,7 +83,7 @@ int		build_list(struct s_list *head)
 }
 
 /* ------------------- functions for stat -------------------- */
-
+/*
 // With a terminating '\0', but do I need it?
 // used in stat_elem
 void	fill_user(struct s_list *elem)
@@ -143,7 +158,9 @@ char	xattr_acl(void)
 		return ('@');
 	return (' ');
 }
+*/
 
+/*
 // used in stat_list
 // uses value in g_path
 // Maybe group in one file:
@@ -193,9 +210,9 @@ void	stat_list(struct s_list *head, int path_len)
 		elem = next;
 	}
 }
-
+*/
 /* ------------------------------------- */
-
+/*
 // used in print_mode
 char	file_type(mode_t fmt)	// fmt = (st_mode & S_IFMT)
 {
@@ -215,9 +232,10 @@ char	file_type(mode_t fmt)	// fmt = (st_mode & S_IFMT)
 		return ('s');
 	return ('?');		// my
 }
+*/
 /* --------------------------------------------- */
 
-int		build_list_arg(struct s_list *head, char const **av)
+int			build_list_arg(struct s_list *head, char const **av)
 {
 	int		ac;
 
@@ -232,7 +250,7 @@ int		build_list_arg(struct s_list *head, char const **av)
 	}
 	return (ac);
 }
-
+/*
 void	stat_elem_arg(struct s_list *elem)
 {
 	if (lstat(elem->name, &(elem->stat)) == -1)		// not g_path
@@ -275,3 +293,4 @@ void	stat_list_arg(struct s_list *head)
 		elem = next;
 	}
 }
+*/
