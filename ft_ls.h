@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 17:31:49 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 17:39:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ void					sort_list(struct s_list *head);
 
 void					compute_metrics(struct s_metrics *metrics,
 													struct s_list const *head);
+
+//
+
+char	file_type(mode_t fmt);
+
 /*
 **	Functions from print_field.c
 */

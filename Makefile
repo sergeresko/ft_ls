@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 17:22:42 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 17:37:08 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = \
 	parse_options.c \
 	after_func.c \
 	sort_list.c \
+	print_field.c \
 	print_elem.c \
 	print_list_short.c \
 	print_list_long.c \

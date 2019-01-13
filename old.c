@@ -381,7 +381,7 @@ char	file_type(mode_t fmt)	// fmt = (st_mode & S_IFMT)
 		return ('s');
 	return ('?');		// my
 }
-
+/*
 // with a following space
 char	*print_mode(char *dst, struct s_list const *elem)
 {
@@ -481,7 +481,7 @@ char	*print_size(char *dst, struct s_list const *elem, unsigned width)
 		(void)print_u(dst, width, elem->stat.st_size); 
 	return (dst + width);
 }
-
+*/
 /* ------------- file: print_list_short.c -------------- */
 /*
 // also reverse
