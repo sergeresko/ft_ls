@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 16:23:57 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 16:36:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ extern time_t const		*(*g_time_func)(struct s_list *);
 typedef struct s_list	*(*t_after_func)(struct s_list const *,
 														struct s_list const *);
 
-void				init(struct s_list *head);
+//void				init(struct s_list *head);
 //void			insert_after(struct s_list *item, struct s_list *new);
 //void			delete(struct s_list *elem);
 

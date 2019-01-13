@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 15:34:08 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 16:35:28 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,18 @@
 #include <unistd.h>
 #include "ft_ls.h"
 
+static void	init(struct s_list *head)
+{
+	head->prev = head;
+	head->next = head;
+}
+
 static void	split_list(struct s_list *head, struct s_list *head_dir)
 {
 	struct s_list	*elem;
 	struct s_list	*next;
 
-	init(head_dir);		// may inline
+	init(head_dir);
 	elem = head->next;
 	while (elem != head)
 	{
@@ -104,7 +110,7 @@ void		list_args(char const **av)
 	struct s_list	head_dir;
 	int				fmt;
 
-	init(&head);	// may inline
+	init(&head);
 	fmt = (build_list_from_args(&head, av) > 1);
 	stat_list_arg(&head);
 	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))

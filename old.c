@@ -714,7 +714,7 @@ int		build_list_from_args(struct s_list *head, char const **av)
 		add_to_list(head, ".", 1);
 	while (*av)
 	{
-		add_to_list(head, *av, ft_strlen(*av));		// (void)... ?
+		add_to_list(head, *av, ft_strlen(*av));
 		++ac;
 		++av;
 	}

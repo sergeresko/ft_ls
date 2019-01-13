@@ -6,13 +6,19 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 16:05:34 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 16:36:06 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "ft_ls.h"
+
+static void	init(struct s_list *head)
+{
+	head->prev = head;
+	head->next = head;
+}
 
 static void	recursion(struct s_list *head, int path_len)
 {
