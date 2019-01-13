@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 17:12:06 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 17:31:49 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ typedef struct s_list	*(*t_after_func)(struct s_list const *head,
 													struct s_list const *elem);
 void					sort_list(struct s_list *head);
 
+// metrics
+
+void					compute_metrics(struct s_metrics *metrics,
+													struct s_list const *head);
 /*
 **	Functions from print_field.c
 */
@@ -141,14 +145,17 @@ void					print_elem_info_long(char *s, struct s_list *elem,
 void					print_elem_name(struct s_list *elem);
 unsigned				info_len(struct s_metrics const *metrics);
 
+/*
+**	Functions from print_list_{long,short}
+*/
 
-// print_list
+void					print_list_short(struct s_list *head);
+void					print_list_short_reverse(struct s_list *head);
+void					print_list_long(struct s_list *head, int show_total);
+void					print_list_long_reverse(struct s_list *head,
+																int show_total);
 
-void	print_list_short(struct s_list *head);
-void	print_list_short_reverse(struct s_list *head);
-void		print_list_long(struct s_list *head, int show_total);
-void		print_list_long_reverse(struct s_list *head, int show_total);
-
+//
 
 int		build_list(struct s_list *head);
 void	stat_list(struct s_list *head, int path_len);
