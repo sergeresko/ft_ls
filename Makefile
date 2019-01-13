@@ -6,7 +6,7 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 15:57:54 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 16:04:51 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = \
 	old.c \
 	get_time.c \
 	list_args.c \
+	list_dir.c \
 	parse_options.c \
 	main.c
 OBJ_DIR = ./obj/
@@ -44,16 +45,6 @@ clean:
 fclean:
 	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
-
-#all:
-#	clang -Wall -Wextra -Werror -o ft_ls \
-#		ft.c \
-#		list.c \
-#		old.c \
-#		get_time.c \
-#		list_args.c \
-#		parse_options.c \
-#		main.c
 
 re: fclean all
 

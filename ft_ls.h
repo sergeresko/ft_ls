@@ -111,6 +111,9 @@ void		print_list_long(struct s_list *head, int show_total);
 void		print_list_long_reverse(struct s_list *head, int show_total);
 
 
+int		build_list(struct s_list *head);
+void	stat_list(struct s_list *head, int path_len);
+
 /* list_directory */
 
 void		list_directory(int path_len);
