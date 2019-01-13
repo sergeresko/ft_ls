@@ -11,11 +11,6 @@
 
 #include "ft_ls.h"
 
-int		is_dummy(char const *name)
-{
-	return (name[0] == '.' && (!name[1] || (name[1] == '.' && !name[2])));
-}
-
 /* ------------------------------------------- */
 
 void	file_error(char const *name)
@@ -487,9 +482,10 @@ char	*print_size(char *dst, struct s_list const *elem, unsigned width)
 	return (dst + width);
 }
 
+/*
 // used once in print_list_long{_reverse}
 // used once in print_list_short{_reverse}
-unsigned	stat_len(struct s_metrics const *metrics)
+unsigned	info_len(struct s_metrics const *metrics)
 {
 	unsigned	len;
 
@@ -510,8 +506,6 @@ unsigned	stat_len(struct s_metrics const *metrics)
 	}
 	return (len);
 }
-
-/* ------------ file: print_elem.c ---------------- */
 
 void	print_elem_info_short(char *s, struct s_list *elem,
 												struct s_metrics const *metrics)
@@ -571,6 +565,7 @@ void	print_elem_name(struct s_list *elem)
 		free(elem);
 	}
 }
+*/
 
 /* ------------- file: print_list_short.c -------------- */
 
@@ -584,7 +579,7 @@ void	print_list_short(struct s_list *head)
 	struct s_list		*next;
 
 	compute_metrics(&metrics, head);
-	s_len = stat_len(&metrics);
+	s_len = info_len(&metrics);
 	if (s_len)
 		s = (char *)malloc(s_len);
 	elem = head->next;
@@ -612,7 +607,7 @@ void	print_list_short_reverse(struct s_list *head)
 	struct s_list		*prev;
 
 	compute_metrics(&metrics, head);
-	s_len = stat_len(&metrics);
+	s_len = info_len(&metrics);
 	if (s_len)
 		s = (char *)malloc(s_len);
 	elem = head->prev;
@@ -664,7 +659,7 @@ void		print_list_long(struct s_list *head, int show_total)
 	compute_metrics(&metrics, head);
 	if (show_total && head->next != head)
 		display_total(metrics.total_blocks);
-	s_len = stat_len(&metrics);
+	s_len = info_len(&metrics);
 	s = (char *)malloc(s_len);
 	elem = head->next;
 	while (elem != head)
@@ -689,7 +684,7 @@ void		print_list_long_reverse(struct s_list *head, int show_total)
 	compute_metrics(&metrics, head);
 	if (show_total && head->next != head)
 		display_total(metrics.total_blocks);
-	s_len = stat_len(&metrics);
+	s_len = info_len(&metrics);
 	s = (char *)malloc(s_len);
 	elem = head->prev;
 	while (elem != head)

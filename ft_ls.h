@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 16:36:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 17:12:06 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 
 # define SIX_MONTHS		15768000
 
-/* list */
-
 struct					s_list
 {
 	char			*name;
@@ -70,26 +68,15 @@ struct					s_metrics
 	blkcnt_t		total_blocks;
 };
 
+/*
+**	declaration of global variables
+*/
+
 extern char				g_path[PATH_MAX + NAME_MAX];
 extern time_t			g_now;
 extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 
-typedef struct s_list	*(*t_after_func)(struct s_list const *,
-														struct s_list const *);
-
-//void				init(struct s_list *head);
-//void			insert_after(struct s_list *item, struct s_list *new);
-//void			delete(struct s_list *elem);
-
-/* compare */
-/*
-int					compare_mtime(struct s_list *elem1, struct s_list *elem2);
-int					compare_atime(struct s_list *elem1, struct s_list *elem2);
-int					compare_ctime(struct s_list *elem1, struct s_list *elem2);
-int					compare_birthtime(struct s_list *elem1, struct s_list *elem2);
-int					compare_size(struct s_list *elem1, struct s_list *elem2);
-*/
 
 /* ------------------ libft functions ------------------ */
 
@@ -113,8 +100,9 @@ char const				**parse_options(char const **av);
 
 // stat
 
-
-// sort
+/*
+**	Functions for sorting from after_func.c and sort_list.c
+*/
 
 struct s_list			*after_mtime(struct s_list const *head,
 													struct s_list const *elem);
@@ -126,7 +114,33 @@ struct s_list			*after_birthtime(struct s_list const *head,
 													struct s_list const *elem);
 struct s_list			*after_size(struct s_list const *head,
 													struct s_list const *elem);
+typedef struct s_list	*(*t_after_func)(struct s_list const *head,
+													struct s_list const *elem);
 void					sort_list(struct s_list *head);
+
+/*
+**	Functions from print_field.c
+*/
+
+char					*print_mode(char *dst, struct s_list const *elem);
+char					*print_time(char *dst, time_t const *time);
+char					*print_size(char *dst, struct s_list const *elem,
+																unsigned width);
+char					*print_s(char *dst, char const *str, unsigned str_len,
+																unsigned width);
+char					*print_u(char *dst, unsigned width, unsigned n);
+
+/*
+**	Functions from print_elem.c
+*/
+
+void					print_elem_info_short(char *s, struct s_list *elem,
+											struct s_metrics const *metrics);
+void					print_elem_info_long(char *s, struct s_list *elem,
+											struct s_metrics const *metrics);
+void					print_elem_name(struct s_list *elem);
+unsigned				info_len(struct s_metrics const *metrics);
+
 
 // print_list
 
@@ -150,5 +164,9 @@ void	stat_list_arg(struct s_list *head);
 
 
 void	list_args(char const **av);
+
+// WHERE?
+
+int		is_dummy(char const *name);
 
 #endif
