@@ -6,7 +6,7 @@
 /*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 17:39:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/13 17:51:15 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,18 @@ typedef struct s_list	*(*t_after_func)(struct s_list const *head,
 													struct s_list const *elem);
 void					sort_list(struct s_list *head);
 
-// metrics
+/*
+**	Functions for metrics from metrics_{1,2}.c compute_metrics.c
+*/
 
+unsigned				max_inode_len(struct s_list const *head);
+unsigned				max_nlink_len(struct s_list const *head);
+unsigned				max_uname_len(struct s_list const *head);
+unsigned				max_gname_len(struct s_list const *head);
+unsigned				max_size_len(struct s_list const *head);
+unsigned				max_name_len(struct s_list const *head);
+unsigned				total_items(struct s_list const *head);
+blkcnt_t				total_blocks(struct s_list const *head);
 void					compute_metrics(struct s_metrics *metrics,
 													struct s_list const *head);
 
