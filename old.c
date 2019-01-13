@@ -885,13 +885,8 @@ void		list_directory(int path_len)
 }
 
 /* --------------------- options --------------------- */
-
-void	init_options(void)
-{
-	OPT = O_COLUMNS | O_SHOW_USER | O_SHOW_GROUP | O_MTIME | O_SORT;
-}
-
-int set_option_1(char c)
+/*
+static int set_option_1(char c)
 {
 	if (c == 'i')
 		OPT |= O_SHOW_INODE;
@@ -919,7 +914,7 @@ int set_option_1(char c)
 	return (0);
 }
 
-int	set_option_2(char c)
+static int	set_option_2(char c)
 {
 	if (c == 'a')
 		OPT |= O_LIST_ALL;
@@ -947,7 +942,7 @@ int	set_option_2(char c)
 	return (0);
 }
 
-int	set_option_3(char c)
+static int	set_option_3(char c)
 {
 	if (c == 'f')
 	{
@@ -986,7 +981,7 @@ char const	**parse_options(char const **av)
 {
 	char const	*s;
 
-	init_options();		// may inline
+	OPT = O_COLUMNS | O_SHOW_USER | O_SHOW_GROUP | O_MTIME | O_SORT;
 	while ((s = *(++av)) && *s == '-' && *(s + 1))
 	{
 		while (*(++s))
@@ -1000,6 +995,7 @@ char const	**parse_options(char const **av)
 	}
 	return (av);
 }
+*/
 
 /* --------------------------------------------- */
 
@@ -1061,106 +1057,3 @@ void	stat_list_arg(struct s_list *head)
 		elem = next;
 	}
 }
-
-/*
-void	split_list(struct s_list *head, struct s_list *head_dir)
-{
-	struct s_list	*elem;
-	struct s_list	*next;
-
-	init(head_dir);		// may inline
-	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		if ((elem->stat.st_mode & S_IFMT) == S_IFDIR)
-		{
-			elem->prev->next = elem->next;
-			elem->next->prev = elem->prev;
-			elem->prev = head_dir->prev;
-			elem->next = head_dir;
-			head_dir->prev->next = elem;
-			head_dir->prev = elem;
-		}
-		elem = next;
-	}
-}
-
-// also reverse
-static void	recursion_args(struct s_list *head, int fmt)
-{
-	struct s_list	*elem;
-	struct s_list	*next;
-
-	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
-		if (fmt)
-		{
-			if (elem != head->next || fmt == 2)
-				(void)write(1, "\n", 1);
-			(void)write(1, g_path, ft_strlen(g_path));
-			(void)write(1, ":\n", 2);
-		}
-		list_directory(elem->name_len);
-		free(elem->name);	// don't update
-		free(elem);			// pointers
-		elem = next;
-	}
-}
-
-static void	recursion_args_reverse(struct s_list *head, int fmt)
-{
-	struct s_list	*elem;
-	struct s_list	*prev;
-
-	elem = head->prev;
-	while (elem != head)
-	{
-		prev = elem->prev;
-		(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
-		if (fmt)
-		{
-			if (elem != head->prev || fmt == 2)
-				(void)write(1, "\n", 1);
-			(void)write(1, g_path, ft_strlen(g_path));
-			(void)write(1, ":\n", 2);
-		}
-		list_directory(elem->name_len);
-		free(elem->name);	// don't update
-		free(elem);			// pointers
-		elem = prev;
-	}
-}
-
-void	list_args(char const **av)
-{
-	struct s_list	head;
-	struct s_list	head_dir;
-	int				fmt;
-
-	init(&head);	// may inline
-	fmt = (build_list_from_args(&head, av) > 1);
-	stat_list_arg(&head);
-	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
-		sort_list(&head);
-	split_list(&head, &head_dir);
-	fmt && (head.next != &head) && (++fmt);
-	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
-	{
-		(OPT & O_LONG_FORMAT) ?
-			print_list_long_reverse(&head, 0) :
-			print_list_short_reverse(&head); 	// if (OPT & O_COLUMNS) TODO
-		recursion_args_reverse(&head_dir, fmt);
-	}
-	else
-	{
-		(OPT & O_LONG_FORMAT) ?
-			print_list_long(&head, 0) :
-			print_list_short(&head);		// if (OPT & O_COLUMNS) TODO
-		recursion_args(&head_dir, fmt);
-	}
-}
-*/
