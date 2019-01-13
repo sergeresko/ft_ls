@@ -1,2 +1,7 @@
 all:
-	clang -Wall -Wextra -Werror ft.c list.c list_directory.c -o ft_ls
+	clang -Wall -Wextra -Werror -o ft_ls \
+		ft.c \
+		list.c \
+		list_directory.c \
+		get_time.c \
+		main.c

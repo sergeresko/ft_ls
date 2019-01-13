@@ -18,11 +18,13 @@ int		is_dummy(char const *name)
 
 /* ------------------------------------------- */
 
+/*
 // maybe make [2 * PATH_MAX + 1] ?
 char			g_path[PATH_MAX + NAME_MAX];		// these definitions
 time_t			g_now;								// in the file
 unsigned		g_options;							// with main
 time_t const	*(*g_time_func)(struct s_list *);	//
+*/
 
 void	file_error(char const *name)
 {
@@ -936,6 +938,7 @@ int	list_directory(char const *path, struct s_opt *opt)
 
 /* ---------------------------------------- */
 
+/*
 time_t const	*get_mtime(struct s_list *elem)
 {
 	return (&(elem->stat.st_mtime));
@@ -955,6 +958,7 @@ time_t const	*get_birthtime(struct s_list *elem)
 {
 	return (&(elem->stat.st_birthtime));
 }
+*/
 
 /* --------------------- options --------------------- */
 
@@ -1073,6 +1077,7 @@ char const	**parse_options(char const **av)
 	return (av);
 }
 
+/*
 int		set_time_func(void)
 {
 	if (OPT & O_MTIME)
@@ -1087,6 +1092,7 @@ int		set_time_func(void)
 		return (-1);
 	return (0);
 }
+*/
 
 /* --------------------------------------------- */
 
@@ -1251,7 +1257,7 @@ void	list_args(char const **av)
 }
 
 /* ---------------------- main --------------------- */
-
+/*
 int	main(int argc, char const *argv[])
 {
 	(void)argc;
@@ -1264,3 +1270,4 @@ int	main(int argc, char const *argv[])
 	//
 	return (0);
 }
+*/

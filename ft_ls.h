@@ -68,12 +68,13 @@ void				init(struct s_list *head);
 //void			delete(struct s_list *elem);
 
 /* compare */
-
+/*
 int					compare_mtime(struct s_list *elem1, struct s_list *elem2);
 int					compare_atime(struct s_list *elem1, struct s_list *elem2);
 int					compare_ctime(struct s_list *elem1, struct s_list *elem2);
 int					compare_birthtime(struct s_list *elem1, struct s_list *elem2);
 int					compare_size(struct s_list *elem1, struct s_list *elem2);
+*/
 
 /* ------------------ libft functions ------------------ */
 
@@ -81,5 +82,22 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 unsigned			ft_utoa(char **addr, unsigned long long n);
+
+/*
+**	get_time.c
+*/
+
+time_t const	*get_mtime(struct s_list *elem);
+time_t const	*get_atime(struct s_list *elem);
+time_t const	*get_ctime(struct s_list *elem);
+time_t const	*get_birthtime(struct s_list *elem);
+
+/* options */
+
+char const	**parse_options(char const **av);
+
+/* --------- */
+
+void	list_args(char const **av);
 
 #endif
