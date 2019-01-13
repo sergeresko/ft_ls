@@ -200,7 +200,7 @@ void	stat_list(struct s_list *head, int path_len)
 }
 
 /* --------------- functions for sorting ------------------ */
-
+/*
 struct s_list	*after_mtime(struct s_list const *head, struct s_list const *elem)
 {
 	time_t const	elem_mtime = elem->stat.st_mtime;
@@ -255,7 +255,7 @@ struct s_list	*after_size(struct s_list const *head, struct s_list const *elem)
 		after = after->prev;
 	return (after);
 }
-
+*/
 typedef struct s_list	*(*t_after_func)(struct s_list const *, struct s_list const *);
 
 t_after_func	select_after_func(void)
@@ -809,81 +809,6 @@ void		print_list_long_reverse(struct s_list *head, int show_total)
 	free(s);
 }
 
-/* ------- file: list_directory.c ------------------------ */
-/*
-void	list_directory(int path_len);	// forward declaration
-
-static void	recursion(struct s_list *head, int path_len)
-{
-	struct s_list	*elem;
-	struct s_list	*next;
-
-	g_path[path_len++] = '/';
-	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		(void)write(1, "\n", 1);
-		(void)write(1, g_path, path_len + elem->name_len);
-		(void)write(1, ":\n", 2);
-		list_directory(path_len + elem->name_len);
-		free(elem->name);	// don't update the pointers, since
-		free(elem);			// this list won't be used further
-		elem = next;
-	}
-}
-
-static void	recursion_reverse(struct s_list *head, int path_len)
-{
-	struct s_list	*elem;
-	struct s_list	*prev;
-
-	g_path[path_len++] = '/';
-	elem = head->prev;
-	while (elem != head)
-	{
-		prev = elem->prev;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		(void)write(1, "\n", 1);
-		(void)write(1, g_path, path_len + elem->name_len);
-		(void)write(1, ":\n", 2);
-		list_directory(path_len + elem->name_len);
-		free(elem->name);	// don't update the pointers, since
-		free(elem);			// this list won't be used further
-		elem = prev;
-	}
-}
-
-void		list_directory(int path_len)
-{
-	struct s_list	head;
-
-	init(&head);	// may inline
-	build_list(&head);
-	stat_list(&head, path_len);
-	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
-		sort_list(&head);
-	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
-	{
-		if (OPT & O_LONG_FORMAT)
-			print_list_long_reverse(&head, 1);
-		else	// if (OPT & O_COLUMNS)	TODO
-			print_list_short_reverse(&head);
-		if (OPT & O_RECURSIVE)
-			recursion_reverse(&head, path_len);
-	}
-	else
-	{
-		if (OPT & O_LONG_FORMAT)
-			print_list_long(&head, 1);
-		else	// if (OPT & O_COLUMNS) TODO
-			print_list_short(&head);
-		if (OPT & O_RECURSIVE)
-			recursion(&head, path_len);
-	}
-}
-*/
 /* --------------------------------------------- */
 
 int		build_list_from_args(struct s_list *head, char const **av)

@@ -101,6 +101,16 @@ char const	**parse_options(char const **av);
 
 // sort
 
+struct s_list	*after_mtime(struct s_list const *head,
+													struct s_list const *elem);
+struct s_list	*after_ctime(struct s_list const *head,
+													struct s_list const *elem);
+struct s_list	*after_atime(struct s_list const *head,
+													struct s_list const *elem);
+struct s_list	*after_birthtime(struct s_list const *head,
+													struct s_list const *elem);
+struct s_list	*after_size(struct s_list const *head,
+													struct s_list const *elem);
 void	sort_list(struct s_list *head);
 
 // print_list

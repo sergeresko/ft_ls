@@ -6,14 +6,13 @@
 #    By: syeresko <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/13 15:49:09 by syeresko          #+#    #+#              #
-#    Updated: 2019/01/13 16:04:51 by syeresko         ###   ########.fr        #
+#    Updated: 2019/01/13 16:16:22 by syeresko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-
 SRC = \
 	ft.c \
 	list.c \
@@ -22,6 +21,7 @@ SRC = \
 	list_args.c \
 	list_dir.c \
 	parse_options.c \
+	after_func.c \
 	main.c
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
