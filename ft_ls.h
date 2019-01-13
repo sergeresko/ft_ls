@@ -96,7 +96,30 @@ time_t const	*get_birthtime(struct s_list *elem);
 
 char const	**parse_options(char const **av);
 
+// stat
+
+
+// sort
+
+void	sort_list(struct s_list *head);
+
+// print_list
+
+void	print_list_short(struct s_list *head);
+void	print_list_short_reverse(struct s_list *head);
+void		print_list_long(struct s_list *head, int show_total);
+void		print_list_long_reverse(struct s_list *head, int show_total);
+
+
+/* list_directory */
+
+void		list_directory(int path_len);
+
 /* --------- */
+
+int		build_list_from_args(struct s_list *head, char const **av);
+void	stat_list_arg(struct s_list *head);
+
 
 void	list_args(char const **av);
 

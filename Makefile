@@ -4,4 +4,5 @@ all:
 		list.c \
 		list_directory.c \
 		get_time.c \
+		list_args.c \
 		main.c

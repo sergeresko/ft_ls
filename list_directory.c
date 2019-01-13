@@ -18,14 +18,6 @@ int		is_dummy(char const *name)
 
 /* ------------------------------------------- */
 
-/*
-// maybe make [2 * PATH_MAX + 1] ?
-char			g_path[PATH_MAX + NAME_MAX];		// these definitions
-time_t			g_now;								// in the file
-unsigned		g_options;							// with main
-time_t const	*(*g_time_func)(struct s_list *);	//
-*/
-
 void	file_error(char const *name)
 {
 	char const	*s = strerror(errno);
@@ -892,74 +884,6 @@ void		list_directory(int path_len)
 	}
 }
 
-/*
-int	list_directory(char const *path, struct s_opt *opt)
-{
-	DIR 			*dirp;
-	struct dirent	*dirent;
-	struct s_list	head;
-	struct s_list	*last;
-	struct s_list	*new;
-
-	(void)opt;		//
-	dirp = opendir(path);
-	if (!dirp)
-		my_error();
-	init(&head);
-	last = &head;
-	while ((dirent = readdir(dirp)))
-	{
-		if (dirent->d_name[0] != '.')
-		{
-			new = (struct s_list *)malloc(sizeof(struct s_list));
-			new->name = (char *)malloc(dirent->d_namlen + 1);
-			(void)strncpy(new->name, dirent->d_name, dirent->d_namlen + 1);	//
-			new->link = NULL;
-			new->owner = NULL;
-			new->group = NULL;
-			insert_after(last, new);
-			last = new;
-		}
-	}
-	if (errno)
-		my_error();
-	if (closedir(dirp) == -1)
-		my_error();
-	last = head.next;
-	while (last != &head)
-	{
-		printf("%s\n", last->name);
-		last = last->next;
-		delete(last->prev);
-	}
-	return (0);		//
-}
-*/
-
-/* ---------------------------------------- */
-
-/*
-time_t const	*get_mtime(struct s_list *elem)
-{
-	return (&(elem->stat.st_mtime));
-}
-
-time_t const	*get_atime(struct s_list *elem)
-{
-	return (&(elem->stat.st_atime));
-}
-
-time_t const	*get_ctime(struct s_list *elem)
-{
-	return (&(elem->stat.st_ctime));
-}
-
-time_t const	*get_birthtime(struct s_list *elem)
-{
-	return (&(elem->stat.st_birthtime));
-}
-*/
-
 /* --------------------- options --------------------- */
 
 void	init_options(void)
@@ -1077,23 +1001,6 @@ char const	**parse_options(char const **av)
 	return (av);
 }
 
-/*
-int		set_time_func(void)
-{
-	if (OPT & O_MTIME)
-		g_time_func = get_mtime;
-	else if (OPT & O_CTIME)
-		g_time_func = get_ctime;
-	else if (OPT & O_ATIME)
-		g_time_func = get_atime;
-	else if (OPT & O_BIRTHTIME)
-		g_time_func = get_birthtime;
-	else
-		return (-1);
-	return (0);
-}
-*/
-
 /* --------------------------------------------- */
 
 int		build_list_from_args(struct s_list *head, char const **av)
@@ -1155,6 +1062,7 @@ void	stat_list_arg(struct s_list *head)
 	}
 }
 
+/*
 void	split_list(struct s_list *head, struct s_list *head_dir)
 {
 	struct s_list	*elem;
@@ -1254,20 +1162,5 @@ void	list_args(char const **av)
 			print_list_short(&head);		// if (OPT & O_COLUMNS) TODO
 		recursion_args(&head_dir, fmt);
 	}
-}
-
-/* ---------------------- main --------------------- */
-/*
-int	main(int argc, char const *argv[])
-{
-	(void)argc;
-	(void)time(&g_now);
-	argv = parse_options(argv);
-	(void)set_time_func();
-	list_args(argv);
-	//
-	system("leaks -q ft_ls");	//
-	//
-	return (0);
 }
 */
