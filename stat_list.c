@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 15:06:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:57:27 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,8 @@ void		stat_list_inner(struct s_list *elem, void *param)
 
 void		stat_list(struct s_list *head, int path_len)
 {
-//	struct s_list	*elem;
-//	struct s_list	*next;
-
 	g_path[path_len++] = '/';
 	foreach(head, stat_list_inner, &path_len);
-/*	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		stat_elem(elem);
-		elem = next;
-	}*/
 }
 
 static void	stat_elem_arg(struct s_list *elem)
@@ -107,15 +96,5 @@ void		stat_list_arg_inner(struct s_list *elem, void *param)
 
 void		stat_list_arg(struct s_list *head)
 {
-//	struct s_list	*elem;
-//	struct s_list	*next;
-
 	foreach(head, stat_list_arg_inner, NULL);
-/*	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		stat_elem_arg(elem);
-		elem = next;
-	}*/
 }

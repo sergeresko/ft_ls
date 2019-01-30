@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 17:26:18 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:45:03 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,6 @@ struct					s_metrics
 	char				*s;			//	added
 };
 
-//struct	s_print_list_param			// TODO: combine with s_metrics?
-//{
-//	struct s_metrics	metrics;
-//	unsigned			s_len;
-//	char				*s;
-//};
-
 /*
 **	Declaration of global variables:
 */
@@ -86,6 +79,7 @@ extern time_t			g_now;
 extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 extern struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
+void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
 
 
 /*
@@ -142,8 +136,6 @@ struct s_list			*after_birthtime(struct s_list const *head,
 													struct s_list const *elem);
 struct s_list			*after_size(struct s_list const *head,
 													struct s_list const *elem);
-//typedef struct s_list	*(*t_after_func)(struct s_list const *head,
-//													struct s_list const *elem);
 void					sort_list(struct s_list *head);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 17:27:25 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:45:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ time_t			g_now;
 unsigned		g_options;
 time_t const	*(*g_time_func)(struct s_list *);
 struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
+void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
 
 /*
 **	Set the global variable g_time_func
@@ -88,6 +89,10 @@ int	main(int argc, char const *argv[])
 	argv = parse_options(argv);
 	(void)set_time_func();
 	(void)set_after_func();
+	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))		//
+		g_foreach_directed = foreach_bkwd;				//
+	else												//
+		g_foreach_directed = foreach;					//
 	list_arg(argv);
 	//
 //	system("leaks -q ft_ls");	//

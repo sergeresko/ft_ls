@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 15:50:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:58:41 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void		list_arg(char const **av)
 		sort_list(&head);
 	split_list(&head, &head_dir);
 	fmt && (head.next != &head) && (++fmt);
-	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
+/*	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
 	{
 		(OPT & O_LONG_FORMAT) ?
 			print_list_long_reverse(&head, 0) :
@@ -133,5 +133,13 @@ void		list_arg(char const **av)
 			print_list_long(&head, 0) :
 			print_list_short(&head);		// if (OPT & O_COLUMNS) TODO
 		recursion_arg(&head_dir, fmt);
-	}
+	}*/
+		(OPT & O_LONG_FORMAT) ?
+			print_list_long(&head, 0) :
+			print_list_short(&head); 	// if (OPT & O_COLUMNS) TODO:
+	// TODO:
+	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
+		recursion_arg_reverse(&head_dir, fmt);
+	else
+		recursion_arg(&head_dir, fmt);
 }
