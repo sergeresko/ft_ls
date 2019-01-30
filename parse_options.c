@@ -3,25 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   parse_options.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:45:32 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 15:48:28 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 20:30:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-#include <dirent.h>		// opendir, readdir, closedir
-#include <sys/stat.h>	// stat, lstat
-#include <unistd.h>		// readlink
-#include <stdio.h>		// perror
-#include <errno.h>		// errno
-#include <stdlib.h>		// malloc, free, exit
-#include <time.h>
-#include <pwd.h>		// getpwuid
-#include <grp.h>		// getgrgid
-#include <sys/xattr.h>	// listxattr
-*/
 
 #include <unistd.h>
 #include <stdlib.h>

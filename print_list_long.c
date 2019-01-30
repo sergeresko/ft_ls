@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 19:48:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 20:10:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	display_total(unsigned long long n)
 	(void)write(1, "\n", 1);
 }
 
-void		print_list_long_inner(struct s_list *elem, void *param)
+static void	print_list_long_inner(struct s_list *elem, void *param)
 {
 	struct s_metrics * const	metrics = (struct s_metrics *)param;
 
@@ -43,7 +43,6 @@ void		print_list_long_inner(struct s_list *elem, void *param)
 
 }
 
-// TODO: combine in one function
 void		print_list_long(struct s_list *head, int show_total)
 {
 	struct s_metrics	metrics;
@@ -53,20 +52,6 @@ void		print_list_long(struct s_list *head, int show_total)
 		display_total(metrics.total_blocks);
 	metrics.s_len = info_len(&metrics);
 	metrics.s = (char *)malloc(metrics.s_len);
-	g_foreach_directed(head, print_list_long_inner, &metrics);		//  only this line is different
-//	foreach(head, print_list_long_inner, &metrics);		//  only this line is different
+	g_foreach_directed(head, print_list_long_inner, &metrics);
 	free(metrics.s);
 }
-
-/*void		print_list_long_reverse(struct s_list *head, int show_total)
-{
-	struct s_metrics	metrics;
-
-	compute_metrics(&metrics, head);
-	if (show_total && head->next != head)
-		display_total(metrics.total_blocks);
-	metrics.s_len = info_len(&metrics);
-	metrics.s = (char *)malloc(metrics.s_len);
-	foreach_bkwd(head, print_list_long_inner, &metrics);	//  only this line is different
-	free(metrics.s);
-}*/

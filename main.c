@@ -6,22 +6,9 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 19:45:23 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 20:33:02 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-#include <dirent.h>		// opendir, readdir, closedir
-#include <sys/stat.h>	// stat, lstat
-#include <unistd.h>		// readlink
-#include <stdio.h>		// perror
-#include <errno.h>		// errno
-#include <stdlib.h>		// malloc, free, exit
-#include <time.h>
-#include <pwd.h>		// getpwuid
-#include <grp.h>		// getgrgid
-#include <sys/xattr.h>	// listxattr
-*/
 
 //#include <stdlib.h>		// leaks
 #include <time.h>
