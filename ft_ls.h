@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:37:57 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 15:32:15 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ extern char				g_path[PATH_MAX + NAME_MAX];
 extern time_t			g_now;
 extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
+extern struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
 
 
 /*
@@ -132,8 +133,8 @@ struct s_list			*after_birthtime(struct s_list const *head,
 													struct s_list const *elem);
 struct s_list			*after_size(struct s_list const *head,
 													struct s_list const *elem);
-typedef struct s_list	*(*t_after_func)(struct s_list const *head,
-													struct s_list const *elem);
+//typedef struct s_list	*(*t_after_func)(struct s_list const *head,
+//													struct s_list const *elem);
 void					sort_list(struct s_list *head);
 
 /*
@@ -199,5 +200,11 @@ int						build_list_arg(struct s_list *head, char const **av);
 
 void					list_directory(int path_len);
 void					list_arg(char const **av);
+
+//
+//	foreach
+//
+void	foreach(struct s_list *head, void (*func)(struct s_list *, void *), void *param);
+void	foreach_bkwd(struct s_list *head, void (*func)(struct s_list *, void *), void *param);
 
 #endif

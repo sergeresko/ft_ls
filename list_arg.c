@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_arg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:02:55 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 14:01:35 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,29 @@ static void	init(struct s_list *head)
 	head->next = head;
 }
 
+void		split_list_inner(struct s_list *elem, void *param)
+{
+	struct s_list	*head_dir = (struct s_list *)param;
+
+	if ((elem->stat.st_mode & S_IFMT) == S_IFDIR)
+	{
+		elem->prev->next = elem->next;
+		elem->next->prev = elem->prev;
+		elem->prev = head_dir->prev;
+		elem->next = head_dir;
+		head_dir->prev->next = elem;
+		head_dir->prev = elem;
+	}
+}
+
 static void	split_list(struct s_list *head, struct s_list *head_dir)
 {
-	struct s_list	*elem;
-	struct s_list	*next;
+//	struct s_list	*elem;
+//	struct s_list	*next;
 
 	init(head_dir);
-	elem = head->next;
+	foreach(head, split_list_inner, head_dir);
+/*	elem = head->next;
 	while (elem != head)
 	{
 		next = elem->next;
@@ -53,8 +69,26 @@ static void	split_list(struct s_list *head, struct s_list *head_dir)
 			head_dir->prev = elem;
 		}
 		elem = next;
-	}
+	}*/
 }
+
+// TODO:
+/*void		recursion_arg_inner(struct s_list *elem, void *param)
+{
+	int const	fmt = *(int *)param;
+
+	(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
+	if (fmt)
+	{
+		if (elem != head->next || fmt == 2)
+			(void)write(1, "\n", 1);
+		(void)write(1, g_path, ft_strlen(g_path));
+		(void)write(1, ":\n", 2);
+	}
+	list_directory(elem->name_len);
+	free(elem->name);	// don't update
+	free(elem);			// pointers
+}*/
 
 static void	recursion_arg(struct s_list *head, int fmt)
 {
