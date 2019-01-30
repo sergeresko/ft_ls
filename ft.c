@@ -3,16 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 13:08:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/12 21:15:16 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 21:16:09 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	n_words;
+	long	*long_dst;
+	long	*long_src;
+	char	*char_dst;
+	char	*char_src;
+
+	n_words = n >> 3;
+	n -= (n_words << 3);
+	long_dst = (long *)dst;
+	long_src = (long *)src;
+	while (n_words--)
+		*(long_dst++) = *(long_src++);
+	char_dst = (char *)long_dst;
+	char_src = (char *)long_src;
+	while (n--)
+		*(char_dst++) = *(char_src++);
+	return (dst);
+}
+
+/*void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*cast_dst;
 	unsigned char	*cast_src;
@@ -22,7 +43,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	while (n--)
 		*(cast_dst++) = *(cast_src++);
 	return (dst);
-}
+}*/
 
 size_t	ft_strlen(const char *s)
 {

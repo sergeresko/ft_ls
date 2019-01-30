@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:33:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 20:36:23 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	stat_elem_arg(struct s_list *elem)
 	}
 }
 
-void		stat_list_arg_inner(struct s_list *elem, void *param)
+static void	stat_list_arg_inner(struct s_list *elem, void *param)
 {
 	(void)param;
 	stat_elem_arg(elem);
