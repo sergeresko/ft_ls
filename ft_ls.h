@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 15:32:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 17:26:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,16 @@ struct					s_metrics
 	unsigned		name_len;
 	unsigned		total_items;
 	blkcnt_t		total_blocks;
+	unsigned			s_len;		//	added
+	char				*s;			//	added
 };
+
+//struct	s_print_list_param			// TODO: combine with s_metrics?
+//{
+//	struct s_metrics	metrics;
+//	unsigned			s_len;
+//	char				*s;
+//};
 
 /*
 **	Declaration of global variables:

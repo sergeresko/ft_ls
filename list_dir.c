@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 13:37:50 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 16:04:00 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,6 @@ static void	init(struct s_list *head)
 	head->prev = head;
 	head->next = head;
 }
-
-/*static void	recursion(struct s_list *head, int path_len)
-{
-	struct s_list	*elem;
-	struct s_list	*next;
-
-	g_path[path_len++] = '/';
-	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		(void)write(1, "\n", 1);
-		(void)write(1, g_path, path_len + elem->name_len);
-		(void)write(1, ":\n", 2);
-		list_directory(path_len + elem->name_len);
-		free(elem->name);	// don't update the pointers, since
-		free(elem);			// this list won't be used further
-		elem = next;
-	}
-}*/
 
 void		recursion_inner(struct s_list *elem, void *param)
 {
@@ -54,48 +33,17 @@ void		recursion_inner(struct s_list *elem, void *param)
 	free(elem);			// this list won't be used further
 }
 
+// TODO: combine in one function
 static void	recursion(struct s_list *head, int path_len)
 {
-//	struct s_list	*elem;
-//	struct s_list	*next;
-
 	g_path[path_len++] = '/';
 	foreach(head, recursion_inner, &path_len);
-/*	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		(void)write(1, "\n", 1);
-		(void)write(1, g_path, path_len + elem->name_len);
-		(void)write(1, ":\n", 2);
-		list_directory(path_len + elem->name_len);
-		free(elem->name);	// don't update the pointers, since
-		free(elem);			// this list won't be used further
-		elem = next;
-	}*/
 }
 
 static void	recursion_reverse(struct s_list *head, int path_len)
 {
-//	struct s_list	*elem;
-//	struct s_list	*prev;
-
 	g_path[path_len++] = '/';
 	foreach_bkwd(head, recursion_inner, &path_len);
-/*	elem = head->prev;
-	while (elem != head)
-	{
-		prev = elem->prev;
-		(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
-		(void)write(1, "\n", 1);
-		(void)write(1, g_path, path_len + elem->name_len);
-		(void)write(1, ":\n", 2);
-		list_directory(path_len + elem->name_len);
-		free(elem->name);	// don't update the pointers, since
-		free(elem);			// this list won't be used further
-		elem = prev;
-	}*/
 }
 
 void		list_directory(int path_len)

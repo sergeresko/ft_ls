@@ -6,22 +6,9 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 14:01:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/30 15:50:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-#include <dirent.h>		// opendir, readdir, closedir
-#include <sys/stat.h>	// stat, lstat
-#include <unistd.h>		// readlink
-#include <stdio.h>		// perror
-#include <errno.h>		// errno
-#include <stdlib.h>		// malloc, free, exit
-#include <time.h>
-#include <pwd.h>		// getpwuid
-#include <grp.h>		// getgrgid
-#include <sys/xattr.h>	// listxattr
-*/
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -50,26 +37,8 @@ void		split_list_inner(struct s_list *elem, void *param)
 
 static void	split_list(struct s_list *head, struct s_list *head_dir)
 {
-//	struct s_list	*elem;
-//	struct s_list	*next;
-
 	init(head_dir);
 	foreach(head, split_list_inner, head_dir);
-/*	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		if ((elem->stat.st_mode & S_IFMT) == S_IFDIR)
-		{
-			elem->prev->next = elem->next;
-			elem->next->prev = elem->prev;
-			elem->prev = head_dir->prev;
-			elem->next = head_dir;
-			head_dir->prev->next = elem;
-			head_dir->prev = elem;
-		}
-		elem = next;
-	}*/
 }
 
 // TODO:
