@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:10:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 16:02:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	display_total(unsigned long long n)
 
 static void	print_list_long_inner(struct s_list *elem, void *param)
 {
-	struct s_metrics * const	metrics = (struct s_metrics *)param;
+	struct s_metrics *const		metrics = (struct s_metrics *)param;
 
 	print_elem_info_long(metrics->s, elem, metrics);
 	(void)write(1, metrics->s, metrics->s_len);

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 13:28:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:54:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 extern struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
 extern void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
-
 
 /*
 **	libft functions from ft.c:
@@ -181,10 +180,7 @@ unsigned				info_len(struct s_metrics const *metrics);
 */
 
 void					print_list_short(struct s_list *head);
-void					print_list_short_reverse(struct s_list *head);
 void					print_list_long(struct s_list *head, int show_total);
-void					print_list_long_reverse(struct s_list *head,
-																int show_total);
 
 //
 

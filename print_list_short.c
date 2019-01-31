@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:16:03 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:10:56 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 16:02:47 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	print_list_short_inner(struct s_list *elem, void *param)
 {
-	struct s_metrics * const	metrics = (struct s_metrics *)param;
+	struct s_metrics *const		metrics = (struct s_metrics *)param;
 
 	if (metrics->s_len)
 	{
