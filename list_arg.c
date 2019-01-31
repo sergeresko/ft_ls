@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:32:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 12:10:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init(struct s_list *head)
 
 static void	split_list_inner(struct s_list *elem, void *param)
 {
-	struct s_list	*head_dir = (struct s_list *)param;
+	struct s_list *const	head_dir = (struct s_list *)param;
 
 	if ((elem->stat.st_mode & S_IFMT) == S_IFDIR)
 	{

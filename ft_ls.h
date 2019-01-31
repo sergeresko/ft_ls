@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 19:45:03 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:30:47 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ extern time_t			g_now;
 extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 extern struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
-void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
+extern void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
 
 
 /*

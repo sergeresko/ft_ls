@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:24:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 17:39:22 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 11:56:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_list_inner(struct s_list *elem, void *param)
 {
-	struct s_list *const	head = (struct s_list *)param;
+	struct s_list *const	head = (struct s_list *)param;	// not needed; inline in the following line (maybe even casting is not needed)
 	struct s_list *const	after = g_after_func(head, elem);
 
 //	after = elem->prev;
