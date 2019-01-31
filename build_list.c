@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:39:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:42:05 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:14:30 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ int			build_list(struct s_list *head)
 	DIR *const		dirp = opendir(g_path);
 	struct dirent	*entry;
 
-	if (!dirp)
-	{
-		file_error(g_path);
+	if (dirp == NULL)
+//	if (!dirp)
 		return (-1);
-	}
-	while ((entry = readdir(dirp)))
+	while ((entry = readdir(dirp)) != NULL)
+//	while ((entry = readdir(dirp)))
 	{
 		if (entry->d_name[0] != '.' || (OPT & O_LIST_ALL) ||
 			((OPT & O_LIST_HIDDEN) && !is_dummy(entry->d_name)))
@@ -240,9 +239,11 @@ int			build_list_arg(struct s_list *head, char const **av)
 	int		ac;
 
 	ac = 0;
-	if (!(*av))
+	if (*av == NULL)
+//	if (!(*av))
 		add_to_list(head, ".", 1);
-	while (*av)
+	while (*av != NULL)
+//	while (*av)
 	{
 		add_to_list(head, *av, ft_strlen(*av));
 		++ac;

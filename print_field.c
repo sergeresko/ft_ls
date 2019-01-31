@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_field.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:34:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 17:37:56 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:33:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,28 @@
 char	*print_mode(char *dst, struct s_list const *elem)
 {
 	mode_t const	mode = elem->stat.st_mode;
-	char			*s;	// may use just dst or, alternatively, *(s++)
 
-	s = dst;			//
-	s[0] = file_type(mode & S_IFMT);
-	s[1] = (mode & S_IRUSR) ? 'r' : '-';
-	s[2] = (mode & S_IWUSR) ? 'w' : '-';
+	dst[0] = file_type(mode & S_IFMT);
+	dst[1] = (mode & S_IRUSR) ? 'r' : '-';
+	dst[2] = (mode & S_IWUSR) ? 'w' : '-';
 	if (mode & S_ISUID)
-		s[3] = (mode & S_IXUSR) ? 's' : 'S';
+		dst[3] = (mode & S_IXUSR) ? 's' : 'S';
 	else
-		s[3] = (mode & S_IXUSR) ? 'x' : '-';
-	s[4] = (mode & S_IRGRP) ? 'r' : '-';
-	s[5] = (mode & S_IWGRP) ? 'w' : '-';
+		dst[3] = (mode & S_IXUSR) ? 'x' : '-';
+	dst[4] = (mode & S_IRGRP) ? 'r' : '-';
+	dst[5] = (mode & S_IWGRP) ? 'w' : '-';
 	if (mode & S_ISGID)
-		s[6] = (mode & S_IXGRP) ? 's' : 'S';
+		dst[6] = (mode & S_IXGRP) ? 's' : 'S';
 	else
-		s[6] = (mode & S_IXGRP) ? 'x' : '-';
-	s[7] = (mode & S_IROTH) ? 'r' : '-';
-	s[8] = (mode & S_IWOTH) ? 'w' : '-';
+		dst[6] = (mode & S_IXGRP) ? 'x' : '-';
+	dst[7] = (mode & S_IROTH) ? 'r' : '-';
+	dst[8] = (mode & S_IWOTH) ? 'w' : '-';
 	if (mode & S_ISVTX)
-		s[9] = (mode & S_IXOTH) ? 't' : 'T';
+		dst[9] = (mode & S_IXOTH) ? 't' : 'T';
 	else
-		s[9] = (mode & S_IXOTH) ? 'x' : '-';
-	s[10] = elem->xattr_acl;
-	s[11] = ' ';
+		dst[9] = (mode & S_IXOTH) ? 'x' : '-';
+	dst[10] = elem->xattr_acl;
+	dst[11] = ' ';
 	return (dst + 12);
 }
 

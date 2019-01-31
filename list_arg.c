@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 15:32:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:04:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ static void	recursion_arg_callback(struct s_list *elem, void *param)
 		(void)write(1, ":\n", 2);
 	}
 	is_first = 0;
-	list_directory(elem->name_len);
+	if (list_directory(elem->name_len))
+		file_error(elem->name);
 	free(elem->name);	// don't update the pointers, since
 	free(elem);			// this list won't be used further
 }
 
-void		list_arg(char const **av)
+int			list_arg(char const **av)
 {
 	struct s_list	head;
 	struct s_list	head_dir;
@@ -74,4 +75,5 @@ void		list_arg(char const **av)
 	else
 		print_list_short(&head); 	// if (OPT & O_COLUMNS) TODO
 	g_foreach_directed(&head_dir, recursion_arg_callback, &fmt);
+	return (0);
 }

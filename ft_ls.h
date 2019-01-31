@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 15:54:51 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:09:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 
 struct					s_list
 {
+	struct s_list	*prev;
+	struct s_list	*next;
 	char			*name;
 	char			*link;
 	char			*uname;
@@ -52,8 +54,6 @@ struct					s_list
 	unsigned		gname_len;
 	struct stat		stat;
 	char			xattr_acl;
-	struct s_list	*prev;
-	struct s_list	*next;
 };
 
 struct					s_metrics
@@ -182,8 +182,6 @@ unsigned				info_len(struct s_metrics const *metrics);
 void					print_list_short(struct s_list *head);
 void					print_list_long(struct s_list *head, int show_total);
 
-//
-
 /*
 **	Functions form build_list.c:
 */
@@ -195,8 +193,8 @@ int						build_list_arg(struct s_list *head, char const **av);
 **	Functions from list_{arg,dir}.c:
 */
 
-void					list_directory(int path_len);
-void					list_arg(char const **av);
+int						list_directory(int path_len);
+int						list_arg(char const **av);
 
 //
 //	foreach

@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:18:53 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 15:20:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:29:27 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-/*
-**
-*/
 
 time_t const	*get_mtime(struct s_list *elem)
 {

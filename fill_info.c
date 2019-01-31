@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syeresko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:14:26 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/13 18:24:34 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:27:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	fill_user(struct s_list *elem)
 {
 	struct passwd	*pw;
 
-	if (!(OPT & O_NUM_UID_GID) && (pw = getpwuid(elem->stat.st_uid)))
+	if (!(OPT & O_NUM_UID_GID) && (pw = getpwuid(elem->stat.st_uid)) != NULL)
 	{
 		elem->uname_len = ft_strlen(pw->pw_name);
 		elem->uname = (char *)malloc(elem->uname_len + 1);
@@ -44,7 +44,7 @@ void	fill_group(struct s_list *elem)
 {
 	struct group	*gr;
 
-	if (!(OPT & O_NUM_UID_GID) && (gr = getgrgid(elem->stat.st_gid)))
+	if (!(OPT & O_NUM_UID_GID) && (gr = getgrgid(elem->stat.st_gid)) != NULL)
 	{
 		elem->gname_len = ft_strlen(gr->gr_name);
 		elem->gname = (char *)malloc(elem->gname_len + 1);
