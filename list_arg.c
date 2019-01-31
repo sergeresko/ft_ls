@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 13:42:44 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:13:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,70 +35,23 @@ static void	split_callback(struct s_list *elem, void *param)
 	}
 }
 
-// TODO:
-/*void		recursion_arg_inner(struct s_list *elem, void *param)
+static void	recursion_arg_callback(struct s_list *elem, void *param)
 {
+	static int	is_first = 1;
 	int const	fmt = *(int *)param;
 
 	(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
 	if (fmt)
 	{
-		if (elem != head->next || fmt == 2)
+		if (!is_first || fmt == 2)
 			(void)write(1, "\n", 1);
 		(void)write(1, g_path, ft_strlen(g_path));
 		(void)write(1, ":\n", 2);
 	}
+	is_first = 0;
 	list_directory(elem->name_len);
 	free(elem->name);	// don't update
 	free(elem);			// pointers
-}*/
-
-static void	recursion_arg(struct s_list *head, int fmt)
-{
-	struct s_list	*elem;
-	struct s_list	*next;
-
-	elem = head->next;
-	while (elem != head)
-	{
-		next = elem->next;
-		(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
-		if (fmt)
-		{
-			if (elem != head->next || fmt == 2)
-				(void)write(1, "\n", 1);
-			(void)write(1, g_path, ft_strlen(g_path));
-			(void)write(1, ":\n", 2);
-		}
-		list_directory(elem->name_len);
-		free(elem->name);	// don't update
-		free(elem);			// pointers
-		elem = next;
-	}
-}
-
-static void	recursion_arg_reverse(struct s_list *head, int fmt)
-{
-	struct s_list	*elem;
-	struct s_list	*prev;
-
-	elem = head->prev;
-	while (elem != head)
-	{
-		prev = elem->prev;
-		(void)ft_memcpy(g_path, elem->name, elem->name_len + 1);
-		if (fmt)
-		{
-			if (elem != head->prev || fmt == 2)
-				(void)write(1, "\n", 1);
-			(void)write(1, g_path, ft_strlen(g_path));
-			(void)write(1, ":\n", 2);
-		}
-		list_directory(elem->name_len);
-		free(elem->name);	// don't update
-		free(elem);			// pointers
-		elem = prev;
-	}
 }
 
 void		list_arg(char const **av)
@@ -114,14 +67,10 @@ void		list_arg(char const **av)
 		foreach(&head, sort_callback, &head);
 	init(&head_dir);
 	foreach(&head, split_callback, &head_dir);
-	fmt && (head.next != &head) && (++fmt);
+	fmt && (head.next != &head) && (++fmt);		// write in two lines
 	if (OPT & O_LONG_FORMAT)
 		print_list_long(&head, 0);
 	else
 		print_list_short(&head); 	// if (OPT & O_COLUMNS) TODO
-	// TODO:
-	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))
-		recursion_arg_reverse(&head_dir, fmt);
-	else
-		recursion_arg(&head_dir, fmt);
+	g_foreach_directed(&head_dir, recursion_arg_callback, &fmt);
 }
