@@ -6,11 +6,11 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:33:02 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 12:48:02 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdlib.h>		// leaks
+#include <stdlib.h>		// leaks
 #include <time.h>
 #include "ft_ls.h"
 
@@ -82,7 +82,7 @@ int	main(int argc, char const *argv[])
 		g_foreach_directed = foreach;					//
 	list_arg(argv);
 	//
-//	system("leaks -q ft_ls");	//
+	system("leaks -q ft_ls");	//
 	//
 	return (0);
 }

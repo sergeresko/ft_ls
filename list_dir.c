@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:07:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:42:15 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init(struct s_list *head)
 	head->next = head;
 }
 
-static void	recursion_inner(struct s_list *elem, void *param)
+static void	recursion_callback(struct s_list *elem, void *param)
 {
 	int const	path_len = *(int *)param;
 
@@ -33,25 +33,21 @@ static void	recursion_inner(struct s_list *elem, void *param)
 	free(elem);			// this list won't be used further
 }
 
-static void	recursion(struct s_list *head, int path_len)
-{
-	g_path[path_len++] = '/';
-	g_foreach_directed(head, recursion_inner, &path_len);
-}
-
 void		list_directory(int path_len)
 {
 	struct s_list	head;
 
 	init(&head);	// may inline
 	build_list(&head);
-	stat_list(&head, path_len);
+	g_path[path_len++] = '/';
+	foreach(&head, stat_callback, &path_len);
 	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
-		sort_list(&head);
+		foreach(&head, sort_callback, &head);
 	if (OPT & O_LONG_FORMAT)
 		print_list_long(&head, 1);
 	else	// if (OPT & O_COLUMNS) TODO
 		print_list_short(&head);
 	if (OPT & O_RECURSIVE)
-		recursion(&head, path_len);
+		//g_path[path_len++] = '/';		// this has already been done above
+		g_foreach_directed(&head, recursion_callback, &path_len);
 }

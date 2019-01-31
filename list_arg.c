@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 12:10:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:42:44 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init(struct s_list *head)
 	head->next = head;
 }
 
-static void	split_list_inner(struct s_list *elem, void *param)
+static void	split_callback(struct s_list *elem, void *param)
 {
 	struct s_list *const	head_dir = (struct s_list *)param;
 
@@ -33,12 +33,6 @@ static void	split_list_inner(struct s_list *elem, void *param)
 		head_dir->prev->next = elem;
 		head_dir->prev = elem;
 	}
-}
-
-static void	split_list(struct s_list *head, struct s_list *head_dir)
-{
-	init(head_dir);
-	foreach(head, split_list_inner, head_dir);
 }
 
 // TODO:
@@ -115,10 +109,11 @@ void		list_arg(char const **av)
 
 	init(&head);
 	fmt = (build_list_arg(&head, av) > 1);
-	stat_list_arg(&head);
+	foreach(&head, stat_arg_callback, NULL);
 	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
-		sort_list(&head);
-	split_list(&head, &head_dir);
+		foreach(&head, sort_callback, &head);
+	init(&head_dir);
+	foreach(&head, split_callback, &head_dir);
 	fmt && (head.next != &head) && (++fmt);
 	if (OPT & O_LONG_FORMAT)
 		print_list_long(&head, 0);

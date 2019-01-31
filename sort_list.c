@@ -6,16 +6,17 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:24:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 11:56:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:04:15 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	sort_list_inner(struct s_list *elem, void *param)
+//	TODO: rename this file
+
+void	sort_callback(struct s_list *elem, void *param)
 {
-	struct s_list *const	head = (struct s_list *)param;	// not needed; inline in the following line (maybe even casting is not needed)
-	struct s_list *const	after = g_after_func(head, elem);
+	struct s_list *const	after = g_after_func(param, elem);
 
 //	after = elem->prev;
 //	while (after != head && opt->compare_func(after, elem))
@@ -34,8 +35,3 @@ void	sort_list_inner(struct s_list *elem, void *param)
 /*
 **	insertion sort
 */
-
-void	sort_list(struct s_list *head)
-{
-	foreach(head, sort_list_inner, head);
-}

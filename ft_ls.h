@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 11:30:47 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/01/31 13:28:19 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void					fill_user(struct s_list *elem);
 void					fill_group(struct s_list *elem);
 int						fill_link(struct s_list *elem);
 char					xattr_acl(void);
-void					stat_list(struct s_list *head, int path_len);
-void					stat_list_arg(struct s_list *head);
+//void					stat_list(struct s_list *head, int path_len);
+//void					stat_list_arg(struct s_list *head);
 
 /*
 **	Functions for sorting from after_func.c and sort_list.c:
@@ -207,5 +207,8 @@ void					list_arg(char const **av);
 //
 void	foreach(struct s_list *head, void (*func)(struct s_list *, void *), void *param);
 void	foreach_bkwd(struct s_list *head, void (*func)(struct s_list *, void *), void *param);
+void	sort_callback(struct s_list *elem, void *param);
+void	stat_callback(struct s_list *elem, void *param);
+void	stat_arg_callback(struct s_list *elem, void *param);
 
 #endif
