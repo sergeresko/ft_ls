@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:34:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:22:01 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:15:28 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	with a following space
 */
 
-char	*print_mode(char *dst, t_list const *elem)
+char	*sprint_mode(char *dst, t_list const *elem)
 {
 	mode_t const	mode = elem->stat.st_mode;
 
@@ -50,9 +50,9 @@ char	*print_mode(char *dst, t_list const *elem)
 **	with a space before
 */
 
-char	*print_time(char *dst, time_t const *time)
+char	*sprint_time(char *dst, time_t const *time)
 {
-	char *const s = ctime(time);
+	char *const		s = ctime(time);
 
 	if (OPT & O_LONG_TIME)
 	{
@@ -73,7 +73,7 @@ char	*print_time(char *dst, time_t const *time)
 **	right align
 */
 
-char	*print_u(char *dst, unsigned width, unsigned n)
+char	*sprint_u(char *dst, unsigned width, unsigned n)
 {
 	char	*s;
 
@@ -94,7 +94,7 @@ char	*print_u(char *dst, unsigned width, unsigned n)
 **	left align
 */
 
-char	*print_s(char *dst, char const *str, unsigned str_len, unsigned width)
+char	*sprint_s(char *dst, char const *str, unsigned str_len, unsigned width)
 {
 	char	*s;
 
@@ -105,7 +105,7 @@ char	*print_s(char *dst, char const *str, unsigned str_len, unsigned width)
 	return (dst + width);
 }
 
-char	*print_size(char *dst, t_list const *elem, unsigned width)
+char	*sprint_size(char *dst, t_list const *elem, unsigned width)
 {
 	char	*s;
 
@@ -113,13 +113,13 @@ char	*print_size(char *dst, t_list const *elem, unsigned width)
 		(elem->stat.st_mode & S_IFMT) == S_IFBLK)
 	{
 		s = dst + width - 8;
-		(void)print_u(s, 3, elem->stat.st_rdev & 0xff);
+		(void)sprint_u(s, 3, elem->stat.st_rdev & 0xff);
 		s[3] = ',';
 		s[4] = ' ';
-		(void)print_u(s + 5, 3, (elem->stat.st_rdev >> 8) & 0x7f);
+		(void)sprint_u(s + 5, 3, (elem->stat.st_rdev >> 8) & 0x7f);
 		s[8] = ' ';
 	}
 	else
-		(void)print_u(dst, width, elem->stat.st_size); 
+		(void)sprint_u(dst, width, elem->stat.st_size);
 	return (dst + width);
 }

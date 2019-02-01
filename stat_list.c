@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:22:49 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:04:56 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	stat_callback(t_list *elem, void *param)
 	else if (OPT & O_LONG_FORMAT)
 	{
 		if (OPT & O_SHOW_USER)
-			fill_user(elem);
+			fill_uname(elem);
 		if (OPT & O_SHOW_GROUP)
-			fill_group(elem);
+			fill_gname(elem);
 		if ((elem->stat.st_mode & S_IFMT) == S_IFLNK)
 			fill_link(elem);		// not checking if it failed
 		else
@@ -69,9 +69,9 @@ void	stat_arg_callback(t_list *elem, void *param)
 		if (OPT & O_LONG_FORMAT && (elem->stat.st_mode & S_IFMT) != S_IFDIR)
 		{
 			if (OPT & O_SHOW_USER)
-				fill_user(elem);
+				fill_uname(elem);
 			if (OPT & O_SHOW_GROUP)
-				fill_group(elem);
+				fill_gname(elem);
 			if ((elem->stat.st_mode & S_IFMT) == S_IFLNK)
 				fill_link(elem);		// not checking if it failed
 			else

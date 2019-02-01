@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:52:10 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:16:53 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ char const			**parse_options(char const **av);
 **	Functions for statistics from fill_info.c and stat_list.c:
 */
 
-void				fill_user(t_list *elem);
-void				fill_group(t_list *elem);
+void				fill_uname(t_list *elem);
+void				fill_gname(t_list *elem);
 int					fill_link(t_list *elem);
 char				xattr_acl(void);
 
@@ -138,7 +138,7 @@ t_list				*after_ctime(t_list const *head, t_list const *elem);
 t_list				*after_atime(t_list const *head, t_list const *elem);
 t_list				*after_birthtime(t_list const *head, t_list const *elem);
 t_list				*after_size(t_list const *head, t_list const *elem);
-void				sort_list(t_list *head);
+//void				sort_list(t_list *head);
 
 /*
 **	Functions for metrics from metrics_{1,2}.c compute_metrics.c:
@@ -158,12 +158,12 @@ void				compute_metrics(t_list const *head);
 **	Functions from print_field.c:
 */
 
-char				*print_mode(char *dst, t_list const *elem);
-char				*print_time(char *dst, time_t const *time);
-char				*print_size(char *dst, t_list const *elem, unsigned width);
-char				*print_s(char *dst, char const *str, unsigned str_len,
+char				*sprint_mode(char *dst, t_list const *elem);
+char				*sprint_time(char *dst, time_t const *time);
+char				*sprint_size(char *dst, t_list const *elem, unsigned width);
+char				*sprint_s(char *dst, char const *str, unsigned str_len,
 																unsigned width);
-char				*print_u(char *dst, unsigned width, unsigned n);
+char				*sprint_u(char *dst, unsigned width, unsigned n);
 
 /*
 **	Functions from print_elem.c:

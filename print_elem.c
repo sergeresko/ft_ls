@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:51:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:20:33 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:17:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		print_elem_info_short(t_list *elem)
 	if (OPT & O_SHOW_INODE)
 	{
 		s = g_metrics.s;
-		s = print_u(s, g_metrics.inode_len, elem->stat.st_ino);
+		s = sprint_u(s, g_metrics.inode_len, elem->stat.st_ino);
 		*(s++) = ' ';
 		(void)write(1, g_metrics.s, g_metrics.s_len);
 	}
@@ -38,24 +38,24 @@ void	print_elem_info_long(t_list *elem)
 	s = g_metrics.s;
 	if (OPT & O_SHOW_INODE)
 	{
-		s = print_u(s, g_metrics.inode_len, elem->stat.st_ino);
+		s = sprint_u(s, g_metrics.inode_len, elem->stat.st_ino);
 		*(s++) = ' ';
 	}
-	s = print_mode(s, elem);
-	s = print_u(s, g_metrics.nlink_len, elem->stat.st_nlink);
+	s = sprint_mode(s, elem);
+	s = sprint_u(s, g_metrics.nlink_len, elem->stat.st_nlink);
 	*(s++) = ' ';
 	if (OPT & O_SHOW_USER)
 	{
-		s = print_s(s, elem->uname, elem->uname_len, g_metrics.uname_len + 2);
+		s = sprint_s(s, elem->uname, elem->uname_len, g_metrics.uname_len + 2);
 		free(elem->uname);
 	}
 	if (OPT & O_SHOW_GROUP)
 	{
-		s = print_s(s, elem->gname, elem->gname_len, g_metrics.gname_len + 2);
+		s = sprint_s(s, elem->gname, elem->gname_len, g_metrics.gname_len + 2);
 		free(elem->gname);
 	}
-	s = print_size(s, elem, g_metrics.size_len);
-	s = print_time(s, g_time_func(elem));
+	s = sprint_size(s, elem, g_metrics.size_len);
+	s = sprint_time(s, g_time_func(elem));
 	*(s++) = ' ';
 	(void)write(1, g_metrics.s, g_metrics.s_len);
 }

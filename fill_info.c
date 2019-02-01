@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:14:26 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:15:38 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:03:56 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <sys/xattr.h>
 #include "ft_ls.h"
 
-void	fill_user(t_list *elem)
+void	fill_uname(t_list *elem)
 {
 	struct passwd	*pw;
 
@@ -40,7 +40,7 @@ void	fill_user(t_list *elem)
 	}
 }
 
-void	fill_group(t_list *elem)
+void	fill_gname(t_list *elem)
 {
 	struct group	*gr;
 
