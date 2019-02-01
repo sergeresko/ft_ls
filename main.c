@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 15:51:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:18:40 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 char			g_path[PATH_MAX + NAME_MAX];
 time_t			g_now;
 unsigned		g_options;
-time_t const	*(*g_time_func)(struct s_list *);
-struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
-void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
-struct s_metrics	g_metrics;
+time_t const	*(*g_time_func)(t_list *);
+t_list			*(*g_after_func)(t_list const *, t_list const *);
+void			(*g_foreach_directed)(t_list *head, void (*func)(t_list *, void *), void *param);		// new
+t_metrics		g_metrics;
 
 /*
 **	Set the global variable g_time_func

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:43:38 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 15:12:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:19:25 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static unsigned	ndigits(unsigned long long n)
 	return (len ? len : 1);
 }
 
-unsigned		max_inode_len(struct s_list const *head)
+unsigned		max_inode_len(t_list const *head)
 {
-	ino_t				max;
-	struct s_list const	*elem;
+	ino_t			max;
+	t_list const	*elem;
 
 	max = 0;
 	elem = head->next;
@@ -48,10 +48,10 @@ unsigned		max_inode_len(struct s_list const *head)
 	return (ndigits(max));
 }
 
-unsigned		max_nlink_len(struct s_list const *head)
+unsigned		max_nlink_len(t_list const *head)
 {
-	nlink_t				max;
-	struct s_list const	*elem;
+	nlink_t			max;
+	t_list const	*elem;
 
 	max = 0;
 	elem = head->next;
@@ -68,12 +68,12 @@ unsigned		max_nlink_len(struct s_list const *head)
 **	Doesn't handle human-readable option.
 */
 
-unsigned		max_size_len(struct s_list const *head)
+unsigned		max_size_len(t_list const *head)
 {
-	off_t				max_size;
-	int					is_special;
-	struct s_list const	*elem;
-	unsigned			max;
+	off_t			max_size;
+	int				is_special;
+	t_list const	*elem;
+	unsigned		max;
 
 	max_size = 0;
 	is_special = 0;

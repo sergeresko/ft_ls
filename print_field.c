@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:34:05 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 20:33:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:22:01 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	with a following space
 */
 
-char	*print_mode(char *dst, struct s_list const *elem)
+char	*print_mode(char *dst, t_list const *elem)
 {
 	mode_t const	mode = elem->stat.st_mode;
 
@@ -105,7 +105,7 @@ char	*print_s(char *dst, char const *str, unsigned str_len, unsigned width)
 	return (dst + width);
 }
 
-char	*print_size(char *dst, struct s_list const *elem, unsigned width)
+char	*print_size(char *dst, t_list const *elem, unsigned width)
 {
 	char	*s;
 

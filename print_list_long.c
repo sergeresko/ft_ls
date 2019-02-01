@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 15:44:05 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:22:16 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	display_total(unsigned long long n)
 	(void)write(1, "\n", 1);
 }
 
-static void	print_list_long_inner(struct s_list *elem, void *param)
+static void	print_list_long_inner(t_list *elem, void *param)
 {
 	(void)param;
 
@@ -43,7 +43,7 @@ static void	print_list_long_inner(struct s_list *elem, void *param)
 
 }
 
-void		print_list_long(struct s_list *head, int show_total)
+void		print_list_long(t_list *head, int show_total)
 {
 	compute_metrics(head);
 	if (show_total && head->next != head)

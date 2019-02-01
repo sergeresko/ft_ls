@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 13:38:58 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:22:49 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **	writes to g_path
 */
 
-void	stat_callback(struct s_list *elem, void *param)
+void	stat_callback(t_list *elem, void *param)
 {
 	int const	path_len = *(int *)param;	// better to pass (g_path + path_len) as param
 
@@ -51,7 +51,7 @@ void	stat_callback(struct s_list *elem, void *param)
 //
 //
 
-void	stat_arg_callback(struct s_list *elem, void *param)
+void	stat_arg_callback(t_list *elem, void *param)
 {
 	(void)param;
 	if (lstat(elem->name, &(elem->stat)) == -1)		// not g_path

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 12:35:00 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:17:57 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <stdlib.h>
 #include "ft_ls.h"
 
-static void	init(struct s_list *head)
+static void	init(t_list *head)
 {
 	head->prev = head;
 	head->next = head;
 }
 
-static void	recursion_callback(struct s_list *elem, void *param)
+static void	recursion_callback(t_list *elem, void *param)
 {
 	int const	path_len = *(int *)param;
 
@@ -28,7 +28,7 @@ static void	recursion_callback(struct s_list *elem, void *param)
 	(void)write(1, "\n", 1);
 	(void)write(1, g_path, path_len + elem->name_len);
 	(void)write(1, ":\n", 2);
-	if (list_directory(path_len + elem->name_len))
+	if (list_directory(path_len + elem->name_len))		// ... != 0
 		file_error(elem->name);
 	free(elem->name);	// don't update the pointers, since
 	free(elem);			// this list won't be used further
@@ -36,7 +36,7 @@ static void	recursion_callback(struct s_list *elem, void *param)
 
 int			list_directory(int path_len)
 {
-	struct s_list	head;
+	t_list	head;
 
 	init(&head);	// may inline
 	if (build_list(&head))

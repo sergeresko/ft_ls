@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 20:04:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:17:39 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #include <unistd.h>
 #include "ft_ls.h"
 
-static void	init(struct s_list *head)
+static void	init(t_list *head)
 {
 	head->prev = head;
 	head->next = head;
 }
 
-static void	split_callback(struct s_list *elem, void *param)
+static void	split_callback(t_list *elem, void *param)
 {
-	struct s_list *const	head_dir = (struct s_list *)param;
+	t_list *const	head_dir = (t_list *)param;
 
 	if ((elem->stat.st_mode & S_IFMT) == S_IFDIR)
 	{
@@ -35,7 +35,7 @@ static void	split_callback(struct s_list *elem, void *param)
 	}
 }
 
-static void	recursion_arg_callback(struct s_list *elem, void *param)
+static void	recursion_arg_callback(t_list *elem, void *param)
 {
 	static int	is_first = 1;
 	int const	fmt = *(int *)param;
@@ -49,7 +49,7 @@ static void	recursion_arg_callback(struct s_list *elem, void *param)
 		(void)write(1, ":\n", 2);
 	}
 	is_first = 0;
-	if (list_directory(elem->name_len))
+	if (list_directory(elem->name_len))		// ... != 0
 		file_error(elem->name);
 	free(elem->name);	// don't update the pointers, since
 	free(elem);			// this list won't be used further
@@ -57,9 +57,9 @@ static void	recursion_arg_callback(struct s_list *elem, void *param)
 
 int			list_arg(char const **av)
 {
-	struct s_list	head;
-	struct s_list	head_dir;
-	int				fmt;
+	t_list	head;
+	t_list	head_dir;
+	int		fmt;
 
 	init(&head);
 	fmt = (build_list_arg(&head, av) > 1);

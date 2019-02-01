@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:47:09 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 14:28:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:14:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static unsigned	info_len(void)
 	return (len);
 }
 
-void	compute_metrics(struct s_list const *head)
+void	compute_metrics(t_list const *head)
 {
 	if (OPT & O_SHOW_INODE)
 		g_metrics.inode_len = max_inode_len(head);

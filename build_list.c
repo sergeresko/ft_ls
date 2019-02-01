@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:39:04 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 20:14:30 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:14:29 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	file_error(char const *name)
 /*
 **	name is added with a terminating '\0'
 */
-static void	add_to_list(struct s_list *head, char const *name, unsigned name_len)
+static void	add_to_list(t_list *head, char const *name, unsigned name_len)
 {
-	struct s_list	*new;
-	struct s_list	*after;
+	t_list	*new;
+	t_list	*after;
 
-	new = (struct s_list *)malloc(sizeof(struct s_list));
+	new = (t_list *)malloc(sizeof(t_list));
 	new->name_len = name_len;
 	new->name = (char *)malloc(name_len + 1);
 	(void)ft_memcpy(new->name, name, name_len + 1);
@@ -60,7 +60,7 @@ static void	add_to_list(struct s_list *head, char const *name, unsigned name_len
 	after->next = new;
 }
 
-int			build_list(struct s_list *head)
+int			build_list(t_list *head)
 {
 	DIR *const		dirp = opendir(g_path);
 	struct dirent	*entry;
@@ -234,7 +234,7 @@ char	file_type(mode_t fmt)	// fmt = (st_mode & S_IFMT)
 */
 /* --------------------------------------------- */
 
-int			build_list_arg(struct s_list *head, char const **av)
+int			build_list_arg(t_list *head, char const **av)
 {
 	int		ac;
 

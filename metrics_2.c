@@ -6,16 +6,16 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:46:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 15:15:09 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:20:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-unsigned	max_uname_len(struct s_list const *head)
+unsigned	max_uname_len(t_list const *head)
 {
-	unsigned			max;
-	struct s_list const	*elem;
+	unsigned		max;
+	t_list const	*elem;
 
 	max = 0;
 	elem = head->next;
@@ -28,10 +28,10 @@ unsigned	max_uname_len(struct s_list const *head)
 	return (max);
 }
 
-unsigned	max_gname_len(struct s_list const *head)
+unsigned	max_gname_len(t_list const *head)
 {
-	unsigned			max;
-	struct s_list const	*elem;
+	unsigned		max;
+	t_list const	*elem;
 
 	max = 0;
 	elem = head->next;
@@ -44,10 +44,10 @@ unsigned	max_gname_len(struct s_list const *head)
 	return (max);
 }
 
-unsigned	max_name_len(struct s_list const *head)
+unsigned	max_name_len(t_list const *head)
 {
-	unsigned			max;
-	struct s_list const	*elem;
+	unsigned		max;
+	t_list const	*elem;
 
 	max = 0;
 	elem = head->next;
@@ -60,10 +60,10 @@ unsigned	max_name_len(struct s_list const *head)
 	return (max);
 }
 
-unsigned	total_items(struct s_list const *head)
+unsigned	total_items(t_list const *head)
 {
-	unsigned			sum;
-	struct s_list const	*elem;
+	unsigned		sum;
+	t_list const	*elem;
 
 	sum = 0;
 	elem = head->next;
@@ -76,10 +76,10 @@ unsigned	total_items(struct s_list const *head)
 
 }
 
-blkcnt_t	total_blocks(struct s_list const *head)
+blkcnt_t	total_blocks(t_list const *head)
 {
-	blkcnt_t			sum;
-	struct s_list const	*elem;
+	blkcnt_t		sum;
+	t_list const	*elem;
 
 	sum = 0;
 	elem = head->next;

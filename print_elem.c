@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:51:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 16:05:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:20:33 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_ls.h"
 
-void		print_elem_info_short(struct s_list *elem)
+void		print_elem_info_short(t_list *elem)
 {
 	char	*s;
 
@@ -31,7 +31,7 @@ void		print_elem_info_short(struct s_list *elem)
 **	frees uname and gname
 */
 
-void	print_elem_info_long(struct s_list *elem)
+void	print_elem_info_long(t_list *elem)
 {
 	char	*s;
 
@@ -64,7 +64,7 @@ void	print_elem_info_long(struct s_list *elem)
 **	frees name, link and elem itself
 */
 
-void	print_elem_name(struct s_list *elem)
+void	print_elem_name(t_list *elem)
 {
 	(void)write(1, elem->name, elem->name_len);
 	if ((OPT & O_LONG_FORMAT) && elem->link)	// ... != NULL

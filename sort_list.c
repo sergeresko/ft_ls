@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:24:27 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 13:04:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:22:38 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 //	TODO: rename this file
 
-void	sort_callback(struct s_list *elem, void *param)
+void	sort_callback(t_list *elem, void *param)
 {
-	struct s_list *const	after = g_after_func(param, elem);
+	t_list *const	after = g_after_func(param, elem);
 
 //	after = elem->prev;
 //	while (after != head && opt->compare_func(after, elem))

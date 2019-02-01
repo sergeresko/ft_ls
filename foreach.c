@@ -6,16 +6,16 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 12:49:06 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 13:38:52 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:16:26 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	foreach(struct s_list *head, void (*func)(struct s_list *, void *), void *param)
+void	foreach(t_list *head, void (*func)(t_list *, void *), void *param)
 {
-	struct s_list	*elem;
-	struct s_list	*next;
+	t_list	*elem;
+	t_list	*next;
 
 	elem = head->next;
 	while (elem != head)
@@ -26,10 +26,10 @@ void	foreach(struct s_list *head, void (*func)(struct s_list *, void *), void *p
 	}
 }
 
-void	foreach_bkwd(struct s_list *head, void (*func)(struct s_list *, void *), void *param)
+void	foreach_bkwd(t_list *head, void (*func)(t_list *, void *), void *param)
 {
-	struct s_list	*elem;
-	struct s_list	*prev;
+	t_list	*elem;
+	t_list	*prev;
 
 	elem = head->prev;
 	while (elem != head)
