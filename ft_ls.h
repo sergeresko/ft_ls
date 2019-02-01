@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 20:48:37 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 21:56:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,5 @@ int					list_arg(char const **av);
 //
 void	sort_callback(t_list *elem, void *param);
 void	stat_callback(t_list *elem, void *param);
-void	stat_arg_callback(t_list *elem, void *param);
 
 #endif
