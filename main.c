@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:08:22 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 13:20:15 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:51:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ int	main(int argc, char const *argv[])
 		g_foreach_directed = foreach_bkwd;				//
 	else												//
 		g_foreach_directed = foreach;					//
-	g_metrics.allocated_len = 10;								//
+	g_metrics.allocated_len = 64;								//
 	g_metrics.s = (char *)malloc(g_metrics.allocated_len);		//
 	(void)list_arg(argv);
 	free(g_metrics.s);
 	//
+//	printf("g_metrics.allocated_len == %u\n", g_metrics.allocated_len);	//
 	system("leaks -q ft_ls");	//
 	//
 	return (0);

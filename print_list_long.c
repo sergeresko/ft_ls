@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 14:26:32 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:44:05 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	print_list_long_inner(struct s_list *elem, void *param)
 	(void)param;
 
 	print_elem_info_long(elem);
-	(void)write(1, g_metrics.s, g_metrics.s_len);
 	print_elem_name(elem);
+	(void)write(1, "\n", 1);
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:51:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 14:34:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 16:05:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void		print_elem_info_short(struct s_list *elem)
 {
 	char	*s;
 
-	s = g_metrics.s;
 	if (OPT & O_SHOW_INODE)
 	{
+		s = g_metrics.s;
 		s = print_u(s, g_metrics.inode_len, elem->stat.st_ino);
 		*(s++) = ' ';
+		(void)write(1, g_metrics.s, g_metrics.s_len);
 	}
 }
 
@@ -56,6 +57,7 @@ void	print_elem_info_long(struct s_list *elem)
 	s = print_size(s, elem, g_metrics.size_len);
 	s = print_time(s, g_time_func(elem));
 	*(s++) = ' ';
+	(void)write(1, g_metrics.s, g_metrics.s_len);
 }
 
 /*
@@ -71,7 +73,6 @@ void	print_elem_name(struct s_list *elem)
 		(void)write(1, elem->link, elem->link_len);
 		free(elem->link);
 	}
-	(void)write(1, "\n", 1);
 	if (!(OPT & O_RECURSIVE) ||
 		(elem->stat.st_mode & S_IFMT) != S_IFDIR ||
 		is_dummy(elem->name))
