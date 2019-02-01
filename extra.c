@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:26:50 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 20:44:00 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:05:16 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int		is_dummy(char const *name)
 	return (name[0] == '.' && (!name[1] || (name[1] == '.' && !name[2])));
 }
 
-void	file_error(char const *name, size_t name_len)
+void	file_error(t_list const *elem)
 {
 	char const	*s = strerror(errno);
 
 	(void)write(2, "./ft_ls: ", 9);
-	(void)write(2, name, name_len);
+	(void)write(2, elem->name, elem->name_len);
 	(void)write(2, ": ", 2);
 	(void)write(2, s, ft_strlen(s));
 	(void)write(2, "\n", 1);

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 20:51:05 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:06:07 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	recursion_callback(t_list *elem, void *param)
 	(void)write(1, g_path, path_len + elem->name_len);
 	(void)write(1, ":\n", 2);
 	if (list_directory(path_len + elem->name_len))		// ... != 0
-		file_error(elem->name, elem->name_len);
+		file_error(elem);
 	free(elem->name);	// don't update the pointers, since
 	free(elem);			// this list won't be used further
 }

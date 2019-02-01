@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:14:26 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 20:50:52 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:07:51 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		fill_link(t_list *elem)
 
 	if (readlink(g_path, NULL, 0) == -1)
 	{
-		file_error(elem->name, elem->name_len);
+		file_error(elem);
 		elem->link = NULL;
 		return (-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 21:59:20 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:06:14 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	display_error_and_delete(t_list *elem)
 {
-	file_error(elem->name, elem->name_len);
+	file_error(elem);
 	elem->next->prev = elem->prev;
 	elem->prev->next = elem->next;
 	free(elem->name);
