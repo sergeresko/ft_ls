@@ -12,22 +12,22 @@
 
 #include "ft_ls.h"
 
-time_t const	*get_mtime(t_list *elem)
+time_t const	*get_mtime(t_list const *elem)
 {
 	return (&(elem->stat.st_mtime));
 }
 
-time_t const	*get_atime(t_list *elem)
+time_t const	*get_atime(t_list const *elem)
 {
 	return (&(elem->stat.st_atime));
 }
 
-time_t const	*get_ctime(t_list *elem)
+time_t const	*get_ctime(t_list const *elem)
 {
 	return (&(elem->stat.st_ctime));
 }
 
-time_t const	*get_birthtime(t_list *elem)
+time_t const	*get_birthtime(t_list const *elem)
 {
 	return (&(elem->stat.st_birthtime));
 }

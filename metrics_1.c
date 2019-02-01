@@ -17,10 +17,10 @@
 **	Used in max_inode_len, max_nlink_len, max_size_len.
 */
 
-static unsigned	ndigits(unsigned long long n)
+static unsigned	ndigits(unsigned long n)
 {
-	unsigned	len;
-	unsigned	power;
+	unsigned		len;
+	unsigned long	power;
 
 	len = 0;
 	power = 1;

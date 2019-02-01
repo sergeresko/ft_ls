@@ -73,7 +73,7 @@ char	*sprint_time(char *dst, time_t const *time)
 **	right align
 */
 
-char	*sprint_u(char *dst, unsigned width, unsigned n)
+char	*sprint_u(char *dst, unsigned width, unsigned long n)
 {
 	char	*s;
 

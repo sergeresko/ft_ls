@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_ls.h"
 
-static void	display_total(unsigned long long n)
+static void	display_total(unsigned long n)
 {
 	char		buf[20];
 	char		*s;

@@ -86,7 +86,7 @@ void	foreach_bkwd(t_list *head, t_callback func, void *param);
 extern char			g_path[PATH_MAX + NAME_MAX];
 extern time_t		g_now;
 extern unsigned		g_options;
-extern time_t const	*(*g_time_func)(t_list *);
+extern time_t const	*(*g_time_func)(t_list const *);
 extern t_list		*(*g_after_func)(t_list const *, t_list const *);
 extern void			(*g_foreach_directed)(t_list *head, t_callback func, void *param);		// new
 extern t_metrics	g_metrics;
@@ -98,7 +98,7 @@ extern t_metrics	g_metrics;
 void				*ft_memcpy(void *dst, void const *src, size_t n);
 size_t				ft_strlen(char const *s);
 int					ft_strcmp(char const *s1, char const *s2);
-unsigned			ft_utoa(char **addr, unsigned long long n);
+unsigned			ft_utoa(char **addr, unsigned long n);
 
 /*
 **	Miscellaneous extra functions from extra.c:
@@ -112,10 +112,10 @@ char				file_type(mode_t fmt);
 **	Functions from get_time.c:
 */
 
-time_t const		*get_mtime(t_list *elem);
-time_t const		*get_atime(t_list *elem);
-time_t const		*get_ctime(t_list *elem);
-time_t const		*get_birthtime(t_list *elem);
+time_t const		*get_mtime(t_list const *elem);
+time_t const		*get_atime(t_list const *elem);
+time_t const		*get_ctime(t_list const *elem);
+time_t const		*get_birthtime(t_list const *elem);
 
 /* options */
 
@@ -134,10 +134,11 @@ char				xattr_acl(void);
 **	Functions for sorting from after_func.c and sort_list.c:
 */
 
-t_list				*after_mtime(t_list const *head, t_list const *elem);
-t_list				*after_ctime(t_list const *head, t_list const *elem);
-t_list				*after_atime(t_list const *head, t_list const *elem);
-t_list				*after_birthtime(t_list const *head, t_list const *elem);
+//t_list				*after_mtime(t_list const *head, t_list const *elem);
+//t_list				*after_ctime(t_list const *head, t_list const *elem);
+//t_list				*after_atime(t_list const *head, t_list const *elem);
+//t_list				*after_birthtime(t_list const *head, t_list const *elem);
+t_list				*after_time(t_list const *head, t_list const *elem);
 t_list				*after_size(t_list const *head, t_list const *elem);
 //void				sort_list(t_list *head);
 
@@ -164,7 +165,7 @@ char				*sprint_time(char *dst, time_t const *time);
 char				*sprint_size(char *dst, t_list const *elem, unsigned width);
 char				*sprint_s(char *dst, char const *str, unsigned str_len,
 																unsigned width);
-char				*sprint_u(char *dst, unsigned width, unsigned n);
+char				*sprint_u(char *dst, unsigned width, unsigned long n);
 
 /*
 **	Functions from print_elem.c:

@@ -68,7 +68,7 @@ int		ft_strcmp(char const *s1, char const *s2)
 /*
 **	The following function is used only in fill_uname and fill_gname.
 */
-unsigned	ft_utoa(char **addr, unsigned long long n)
+unsigned	ft_utoa(char **addr, unsigned long n)
 {
 	char		buf[20];
 	char		*s;

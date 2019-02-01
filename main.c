@@ -22,16 +22,16 @@
 char			g_path[PATH_MAX + NAME_MAX];
 time_t			g_now;
 unsigned		g_options;
-time_t const	*(*g_time_func)(t_list *);
+time_t const	*(*g_time_func)(t_list const *);
 t_list			*(*g_after_func)(t_list const *, t_list const *);
-void			(*g_foreach_directed)(t_list *head, void (*func)(t_list *, void *), void *param);		// new
+void			(*g_foreach_directed)(t_list *head, t_callback func, void *param);		// new
 t_metrics		g_metrics;
 
 /*
 **	Set the global variable g_time_func
 */
 
-static int		set_time_func(void)
+static void		set_time_func(void)
 {
 	if (OPT & O_MTIME)
 		g_time_func = get_mtime;
@@ -41,29 +41,14 @@ static int		set_time_func(void)
 		g_time_func = get_atime;
 	else if (OPT & O_BIRTHTIME)
 		g_time_func = get_birthtime;
-	else
-		return (-1);
-	return (0);
 }
 
-static int		set_after_func(void)
+static void		set_after_func(void)
 {
 	if (OPT & O_SORT_SIZE)
 		g_after_func = after_size;	// what is size for special files?
 	else if (OPT & O_SORT_TIME)
-	{
-		if (OPT & O_MTIME)
-			g_after_func = after_mtime;
-		else if (OPT & O_CTIME)
-			g_after_func = after_ctime;
-		else if (OPT & O_ATIME)
-			g_after_func = after_atime;
-		else if (OPT & O_BIRTHTIME)
-			g_after_func = after_birthtime;
-		else
-			return (-1);
-	}
-	return (0);	// can be uninitialized
+		g_after_func = after_time;
 }
 
 /*
@@ -75,8 +60,8 @@ int	main(int argc, char const *argv[])
 	(void)argc;
 	(void)time(&g_now);
 	argv = parse_options(argv);
-	(void)set_time_func();
-	(void)set_after_func();
+	set_time_func();
+	set_after_func();
 	if ((OPT & O_SORT) && (OPT & O_SORT_REVERSE))		//
 		g_foreach_directed = foreach_bkwd;				//
 	else												//
