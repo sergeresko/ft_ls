@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 13:08:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 14:31:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 22:27:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		ft_strcmp(char const *s1, char const *s2)
 }
 
 /*
-**	The following function is used only in fill_user and fill_group.
+**	The following function is used only in fill_uname and fill_gname.
 */
 unsigned	ft_utoa(char **addr, unsigned long long n)
 {
