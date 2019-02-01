@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 20:09:40 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:30:18 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ struct					s_metrics
 	blkcnt_t		total_blocks;
 	unsigned			s_len;		//	added
 	char				*s;			//	added
+	unsigned		allocated_len;		//	added recently
 };
 
 /*
@@ -80,14 +81,15 @@ extern unsigned			g_options;
 extern time_t const		*(*g_time_func)(struct s_list *);
 extern struct s_list	*(*g_after_func)(struct s_list const *, struct s_list const *);
 extern void			(*g_foreach_directed)(struct s_list *head, void (*func)(struct s_list *, void *), void *param);		// new
+extern struct s_metrics	g_metrics;
 
 /*
 **	libft functions from ft.c:
 */
 
-void					*ft_memcpy(void *dst, const void *src, size_t n);
-size_t					ft_strlen(const char *s);
-int						ft_strcmp(const char *s1, const char *s2);
+void					*ft_memcpy(void *dst, void const *src, size_t n);
+size_t					ft_strlen(char const *s);
+int						ft_strcmp(char const *s1, char const *s2);
 unsigned				ft_utoa(char **addr, unsigned long long n);
 
 /*
@@ -149,8 +151,7 @@ unsigned				max_size_len(struct s_list const *head);
 unsigned				max_name_len(struct s_list const *head);
 unsigned				total_items(struct s_list const *head);
 blkcnt_t				total_blocks(struct s_list const *head);
-void					compute_metrics(struct s_metrics *metrics,
-													struct s_list const *head);
+void					compute_metrics(struct s_list const *head);
 
 /*
 **	Functions from print_field.c:
@@ -168,12 +169,9 @@ char					*print_u(char *dst, unsigned width, unsigned n);
 **	Functions from print_elem.c:
 */
 
-void					print_elem_info_short(char *s, struct s_list *elem,
-											struct s_metrics const *metrics);
-void					print_elem_info_long(char *s, struct s_list *elem,
-											struct s_metrics const *metrics);
+void					print_elem_info_short(struct s_list *elem);
+void					print_elem_info_long(struct s_list *elem);
 void					print_elem_name(struct s_list *elem);
-unsigned				info_len(struct s_metrics const *metrics);
 
 /*
 **	Functions from print_list_{long,short}:

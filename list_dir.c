@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:02:29 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 20:04:35 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 12:35:00 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	recursion_callback(struct s_list *elem, void *param)
 }
 
 int			list_directory(int path_len)
-//void		list_directory(int path_len)
 {
 	struct s_list	head;
 

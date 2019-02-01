@@ -6,28 +6,28 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 13:08:40 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 21:16:09 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:31:48 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, void const *src, size_t n)
 {
-	size_t	n_words;
-	long	*long_dst;
-	long	*long_src;
-	char	*char_dst;
-	char	*char_src;
+	size_t		n_words;
+	long		*long_dst;
+	long const	*long_src;
+	char		*char_dst;
+	char const	*char_src;
 
 	n_words = n >> 3;
 	n -= (n_words << 3);
 	long_dst = (long *)dst;
-	long_src = (long *)src;
+	long_src = (long const *)src;
 	while (n_words--)
 		*(long_dst++) = *(long_src++);
 	char_dst = (char *)long_dst;
-	char_src = (char *)long_src;
+	char_src = (char const *)long_src;
 	while (n--)
 		*(char_dst++) = *(char_src++);
 	return (dst);
@@ -45,9 +45,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }*/
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char const *s)
 {
-	size_t	len;
+	size_t		len;
 
 	len = 0;
 	while (*(s++))
@@ -55,7 +55,7 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-int		ft_strcmp(const char *s1, const char *s2)
+int		ft_strcmp(char const *s1, char const *s2)
 {
 	while (*s1 && *s2 && *s1 == *s2)
 	{

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/31 16:02:48 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:26:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,18 @@ static void	display_total(unsigned long long n)
 
 static void	print_list_long_inner(struct s_list *elem, void *param)
 {
-	struct s_metrics *const		metrics = (struct s_metrics *)param;
+	(void)param;
 
-	print_elem_info_long(metrics->s, elem, metrics);
-	(void)write(1, metrics->s, metrics->s_len);
+	print_elem_info_long(elem);
+	(void)write(1, g_metrics.s, g_metrics.s_len);
 	print_elem_name(elem);
 
 }
 
 void		print_list_long(struct s_list *head, int show_total)
 {
-	struct s_metrics	metrics;
-
-	compute_metrics(&metrics, head);
+	compute_metrics(head);
 	if (show_total && head->next != head)
-		display_total(metrics.total_blocks);
-	metrics.s_len = info_len(&metrics);
-	metrics.s = (char *)malloc(metrics.s_len);
-	g_foreach_directed(head, print_list_long_inner, &metrics);
-	free(metrics.s);
+		display_total(g_metrics.total_blocks);
+	g_foreach_directed(head, print_list_long_inner, NULL);
 }
