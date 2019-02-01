@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 18:51:45 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:48:37 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ unsigned			ft_utoa(char **addr, unsigned long long n);
 */
 
 int					is_dummy(char const *name);
-void				file_error(char const *name);
+void				file_error(char const *name, size_t name_len);
 char				file_type(mode_t fmt);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 20:00:04 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:51:12 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	recursion_arg_callback(t_list *elem, void *param)
 	}
 	is_first = 0;
 	if (list_directory(elem->name_len))		// ... != 0
-		file_error(elem->name);
+		file_error(elem->name, elem->name_len);
 	free(elem->name);	// don't update the pointers, since
 	free(elem);			// this list won't be used further
 }
@@ -63,7 +63,7 @@ int			list_arg(char const **av)
 
 	init(&head);
 	fmt = (build_list_arg(&head, av) > 1);
-	foreach(&head, stat_arg_callback, NULL);
+	foreach(&head, stat_arg_callback, g_path);
 	if ((OPT & O_SORT) && (OPT & (O_SORT_TIME | O_SORT_SIZE)))
 		foreach(&head, sort_callback, &head);
 	init(&head_dir);

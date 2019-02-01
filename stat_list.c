@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 18:06:01 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 18:04:56 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:53:21 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@
 
 void	stat_callback(t_list *elem, void *param)
 {
-	int const	path_len = *(int *)param;	// better to pass (g_path + path_len) as param
-
-	(void)ft_memcpy(g_path + path_len, elem->name, elem->name_len + 1);
+	(void)ft_memcpy(param, elem->name, elem->name_len + 1);
 	if (lstat(g_path, &(elem->stat)) == -1)			// always lstat
 	{		// display error and delete element
-		file_error(g_path);
+		file_error(elem->name, elem->name_len);
 		elem->next->prev = elem->prev;
 		elem->prev->next = elem->next;
 		free(elem->name);
@@ -53,10 +51,10 @@ void	stat_callback(t_list *elem, void *param)
 
 void	stat_arg_callback(t_list *elem, void *param)
 {
-	(void)param;
-	if (lstat(elem->name, &(elem->stat)) == -1)		// not g_path
+	(void)ft_memcpy(param, elem->name, elem->name_len + 1);
+	if (lstat(g_path, &(elem->stat)) == -1)
 	{		// display error and delete element
-		file_error(elem->name);		// NB: filename is not in g_path !
+		file_error(elem->name, elem->name_len);
 		elem->next->prev = elem->prev;
 		elem->prev->next = elem->next;
 		free(elem->name);
@@ -65,7 +63,7 @@ void	stat_arg_callback(t_list *elem, void *param)
 	else
 	{
 		if (!(OPT & O_LONG_FORMAT) && (elem->stat.st_mode & S_IFMT) == S_IFLNK)
-			(stat(elem->name, &(elem->stat)) == -1) && (errno = 0);
+			(stat(elem->name, &(elem->stat)) == -1) && (errno = 0);		// (stat(elem->name, &(elem->stat)) == 0) || (errno = 0);
 		if (OPT & O_LONG_FORMAT && (elem->stat.st_mode & S_IFMT) != S_IFDIR)
 		{
 			if (OPT & O_SHOW_USER)
