@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:45:32 by syeresko          #+#    #+#             */
-/*   Updated: 2019/01/30 20:30:19 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:53:03 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int set_option_1(char c)
 	}
 	else if (c == 'T')
 		OPT |= O_LONG_TIME;
+	else if (c == 'G')
+		OPT |= O_COLOR;
 	else
 		return (-1);
 	return (0);

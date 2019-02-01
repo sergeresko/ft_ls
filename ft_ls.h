@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 18:16:53 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:51:45 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define O_SORT_TIME	(1 << 13)
 # define O_SORT_SIZE	(1 << 14)
 # define O_SORT_REVERSE	(1 << 15)
+# define O_COLOR		(1 << 18)
 
 # define SIX_MONTHS		15768000
 

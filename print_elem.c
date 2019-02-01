@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:51:19 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 18:17:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:07:46 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,36 @@ void	print_elem_info_long(t_list *elem)
 	(void)write(1, g_metrics.s, g_metrics.s_len);
 }
 
+static void	change_color(mode_t fmt)
+{
+	if ((fmt & S_IFMT) == S_IFDIR)
+		(void)write(1, "\e[36m", 5);
+	else if (fmt & S_IXUSR)
+		(void)write(1, "\e[31m", 5);
+	else if ((fmt & S_IFMT) == S_IFLNK)
+		(void)write(1, "\e[35m", 5);
+	else if ((fmt & S_IFMT) == S_IFBLK)
+		(void)write(1, "\e[34m\e[46m", 10);
+	else if ((fmt & S_IFMT) == S_IFCHR)
+		(void)write(1, "\e[34m\e[43m", 10);
+	else if ((fmt & S_IFMT) == S_IFSOCK)
+		(void)write(1, "\e[32m", 5);
+}
+
 /*
 **	frees name, link and elem itself
 */
 
 void	print_elem_name(t_list *elem)
 {
-	(void)write(1, elem->name, elem->name_len);
+	if (OPT & O_COLOR)
+	{
+		change_color(elem->stat.st_mode);
+		(void)write(1, elem->name, elem->name_len);
+		(void)write(1, "\e[0m", 4);
+	}
+	else
+		(void)write(1, elem->name, elem->name_len);
 	if ((OPT & O_LONG_FORMAT) && elem->link)	// ... != NULL
 	{
 		(void)write(1, " -> ", 4);
