@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 16:23:23 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:09:54 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 17:52:10 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ typedef struct		s_metrics
 	unsigned			allocated_len;		//	added recently
 }					t_metrics;
 
+//
+//	foreach
+//
+typedef void	(*t_callback)(t_list *elem, void *param);
+void	foreach(t_list *head, t_callback func, void *param);
+void	foreach_bkwd(t_list *head, t_callback func, void *param);
+
 /*
 **	Declaration of global variables:
 */
@@ -80,7 +87,7 @@ extern time_t		g_now;
 extern unsigned		g_options;
 extern time_t const	*(*g_time_func)(t_list *);
 extern t_list		*(*g_after_func)(t_list const *, t_list const *);
-extern void			(*g_foreach_directed)(t_list *head, void (*func)(t_list *, void *), void *param);		// new
+extern void			(*g_foreach_directed)(t_list *head, t_callback func, void *param);		// new
 extern t_metrics	g_metrics;
 
 /*
@@ -188,10 +195,8 @@ int					list_directory(int path_len);
 int					list_arg(char const **av);
 
 //
-//	foreach
+//	callbacks
 //
-void	foreach(t_list *head, void (*func)(t_list *, void *), void *param);
-void	foreach_bkwd(t_list *head, void (*func)(t_list *, void *), void *param);
 void	sort_callback(t_list *elem, void *param);
 void	stat_callback(t_list *elem, void *param);
 void	stat_arg_callback(t_list *elem, void *param);
