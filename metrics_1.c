@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:43:38 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 12:26:07 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:12:32 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ unsigned		max_inode_len(struct s_list const *head)
 	struct s_list const	*elem;
 
 	max = 0;
-	elem = head;
-	while ((elem = elem->next) != head)
+	elem = head->next;
+	while (elem != head)
 	{
 		if (elem->stat.st_ino > max)
 			max = elem->stat.st_ino;
+		elem = elem->next;
 	}
 	return (ndigits(max));
 }
@@ -53,11 +54,12 @@ unsigned		max_nlink_len(struct s_list const *head)
 	struct s_list const	*elem;
 
 	max = 0;
-	elem = head;
-	while ((elem = elem->next) != head)
+	elem = head->next;
+	while (elem != head)
 	{
 		if (elem->stat.st_nlink > max)
 			max = elem->stat.st_nlink;
+		elem = elem->next;
 	}
 	return (ndigits(max));
 }
@@ -75,8 +77,8 @@ unsigned		max_size_len(struct s_list const *head)
 
 	max_size = 0;
 	is_special = 0;
-	elem = head;
-	while ((elem = elem->next) != head)
+	elem = head->next;
+	while (elem != head)
 	{
 		if ((elem->stat.st_mode & S_IFMT) == S_IFCHR ||
 			(elem->stat.st_mode & S_IFMT) == S_IFBLK)
@@ -85,6 +87,7 @@ unsigned		max_size_len(struct s_list const *head)
 		}
 		else if (elem->stat.st_size > max_size)
 			max_size = elem->stat.st_size;
+		elem = elem->next;
 	}
 	if (is_special)
 		return ((max = ndigits(max_size)) > 8 ? max : 8);
