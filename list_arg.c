@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 15:28:10 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:17:39 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 20:00:04 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,19 @@ int			list_arg(char const **av)
 	g_foreach_directed(&head_dir, recursion_arg_callback, &fmt);
 	return (0);
 }
+
+/*
+**	meaning of 'fmt':
+**
+**	(number of arguments is > 1)
+**          /           \
+**	    no /             \ yes
+**	      /               \
+**	  fmt = 0     (among the arguments
+**	              there was at least 1
+**	              valid non-directory)
+**	                   /        \
+**	               no /          \ yes
+**	                 /            \
+**               fmt = 1        fmt = 2
+*/

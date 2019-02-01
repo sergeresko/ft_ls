@@ -6,7 +6,7 @@
 /*   By: syeresko <syeresko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:21:24 by syeresko          #+#    #+#             */
-/*   Updated: 2019/02/01 17:22:16 by syeresko         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:32:00 by syeresko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	print_list_long_inner(t_list *elem, void *param)
 	print_elem_info_long(elem);
 	print_elem_name(elem);
 	(void)write(1, "\n", 1);
-
 }
 
 void		print_list_long(t_list *head, int show_total)
